@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar en uniformes...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+              <div class="container"> <div class="fila">
+         
+      
+        <div class="producto" data-name="Bata de Laboratorio para Hombre">
+            <img src="Bata de Laboratorio para Hombre.jpg"alt="Producto_ 34"><h4>Bata de Laboratorio para Hombre</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539468</p>
+        </div>
+
+        <div class="producto" data-name="Bata de Laboratorio para Mujer">
+            <img src="Bata de Laboratorio para Mujer.jpg"alt="Producto_ 35"><h4>Bata de Laboratorio para Mujer</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539469</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Corta Azul Cielo">
+            <img src="Blusa Manga Corta Azul Cielo.jpg"alt="Producto_ 44"><h4>Blusa Manga Corta Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539444</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Corta Azul Rey">
+            <img src="Blusa Manga Corta Azul Rey.jpg"alt="Producto_ 45"><h4>Blusa Manga Corta Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539420</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Corta para Maternidad Azul Rey">
+            <img src="Blusa Manga Corta para Maternidad Azul Rey.jpg"alt="Producto_ 46"><h4>Blusa Manga Corta para Maternidad Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539418</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Corta para Maternidad Azul Cielo">
+            <img src="Blusa Manga Corta para Maternidad Azul Cielo.jpg"alt="Producto_ 47"><h4>Blusa Manga Corta para Maternidad Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539457</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Larga Azul Cielo">
+            <img src="Blusa Manga Larga Azul Cielo.jpg"alt="Producto_ 48"><h4>Blusa Manga Larga Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539445</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Larga Azul Rey">
+            <img src="Blusa Manga Larga Azul Rey.jpg"alt="Producto_ 49"><h4>Blusa Manga Larga Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539421</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Corta Azul Rey">
+            <img src="Camisa Manga Corta Azul Rey.jpg"alt="Producto_ 66"><h4>Camisa Manga Corta Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539416</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Larga Azul Rey">
+            <img src="Camisa Manga Larga Azul Rey.jpg"alt="Producto_ 67"><h4>Camisa Manga Larga Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539417</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Larga Caqui">
+            <img src="Camisa Manga Larga Caqui.jpg"alt="Producto_ 68"><h4>Camisa Manga Larga Caqui</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539426</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Larga Caqui Ignifuga y Contra Arco Electrico">
+            <img src="Camisa Manga Larga Caqui Ignifuga y Contra Arco Electrico.jpg"alt="Producto_ 69"><h4>Camisa Manga Larga Caqui Ignifuga y Contra Arco Electrico</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539434</p>
+        </div>
+
+        <div class="producto" data-name="Chamarra para Hombre Azul Marino">
+            <img src="Chamarra para Hombre Azul Marino.jpg"alt="Producto_ 122"><h4>Chamarra para Hombre Azul Marino</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539465</p>
+        </div>
+
+        <div class="producto" data-name="Chamarra para Mujer Azul Marino">
+            <img src="Chamarra para Mujer Azul Marino.jpg"alt="Producto_ 123"><h4>Chamarra para Mujer Azul Marino</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539467</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Hombre de Mezclilla con Cinta Reflejante">
+            <img src="Pantalon (Jeans) para Hombre de Mezclilla con Cinta Reflejante.jpg"alt="Producto_ 245"><h4>Pantalon (Jeans) para Hombre de Mezclilla con Cinta Reflejante</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539422</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Maternidad de Mezclilla con Cinta Reflejante">
+            <img src="Pantalon (Jeans) para Maternidad de Mezclilla con Cinta Reflejante.jpg"alt="Producto_ 246"><h4>Pantalon (Jeans) para Maternidad de Mezclilla con Cinta Reflejante</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539419</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante">
+            <img src="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante.jpg"alt="Producto_ 247"><h4>Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539424</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante y Bolsa Cargo">
+            <img src="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante y Bolsa Cargo.jpg"alt="Producto_ 248"><h4>Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante y Bolsa Cargo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539448</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon Caqui Ignifugo y Contra Arco Electrico">
+            <img src="Pantalon Caqui Ignifugo y Contra Arco Electrico.jpg"alt="Producto_ 249"><h4>Pantalon Caqui Ignifugo y Contra Arco Electrico</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539437</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon de Cargo para Hombre Caqui">
+            <img src="Pantalon de Cargo para Hombre Caqui.jpg"alt="Producto_ 250"><h4>Pantalon de Cargo para Hombre Caqui</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539431</p>
+        </div>
+
+        <div class="producto" data-name="Playera Manga Corta Azul Cielo">
+            <img src="Playera Manga Corta Azul Cielo.jpg"alt="Producto_ 272"><h4>Playera Manga Corta Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539440</p>
+        </div>
+
+        <div class="producto" data-name="Playera Manga Larga Azul Cielo">
+            <img src="Playera Manga Larga Azul Cielo.jpg"alt="Producto_ 273"><h4>Playera Manga Larga Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539441</p>
+        </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

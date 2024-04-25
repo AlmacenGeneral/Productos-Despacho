@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar en Químicos...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+     <div class="container"> <div class="fila">
+ 
+        <div class="producto" data-name="Arrow Kg">
+            <img src="Arrow Kg.jpg"alt="Producto_ 28"><h4>Arrow Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000848</p>
+        </div>
+
+        <div class="producto" data-name="Cloro Cloralex con 950 ml">
+            <img src="Cloro Cloralex con 950 ml.jpg"alt="Producto_ 133"><h4>Cloro Cloralex con 950 ml</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5506859</p>
+        </div>
+
+        <div class="producto" data-name="Eurochlor Kg">
+            <img src="Eurochlor Kg.jpg"alt="Producto_ 152"><h4>Eurochlor Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000849</p>
+        </div>
+
+        <div class="producto" data-name="Flash Liquido Desengrasante Kg">
+            <img src="Flash Liquido Desengrasante Kg.jpg"alt="Producto_ 157"><h4>Flash Liquido Desengrasante Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5505875</p>
+        </div>
+
+        <div class="producto" data-name="Fosnik FS Kg">
+            <img src="Fosnik FS Kg.jpg"alt="Producto_ 160"><h4>Fosnik FS Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000840</p>
+        </div>
+
+        <div class="producto" data-name="Full Power Kg">
+            <img src="Full Power Kg.jpg"alt="Producto_ 162"><h4>Full Power Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000842</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Bentona BAT-3 Roshfrans) con 16 Kg">
+            <img src="Grasa (Bentona BAT-3 Roshfrans) con 16 Kg.jpg"alt="Producto_ 169"><h4>Grasa (Bentona BAT-3 Roshfrans) con 16 Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:4081835</p>
+        </div>
+
+        <div class="producto" data-name="Hipoclorito de Calcio (HTH) Kg">
+            <img src="Hipoclorito de Calcio (HTH) Kg.jpg"alt="Producto_ 192"><h4>Hipoclorito de Calcio (HTH) Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000505</p>
+        </div>
+
+        <div class="producto" data-name="Hipoclorito de Sodio Kg">
+            <img src="Hipoclorito de Sodio Kg.jpg"alt="Producto_ 193"><h4>Hipoclorito de Sodio Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000522</p>
+        </div>
+
+        <div class="producto" data-name="Magic Plus Kg">
+            <img src="Magic Plus Kg.jpg"alt="Producto_ 223"><h4>Magic Plus Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000843</p>
+        </div>
+
+        <div class="producto" data-name="Parafina Lata Litro">
+            <img src="Parafina Lata Litro.jpg"alt="Producto_ 258"><h4>Parafina Lata Litro</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:4057494</p>
+        </div>
+
+        <div class="producto" data-name="Pasta Decapante Garrafon Kg">
+            <img src="Pasta Decapante Garrafon Kg.jpg"alt="Producto_ 262"><h4>Pasta Decapante Garrafon Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:4072171</p>
+        </div>
+
+        <div class="producto" data-name="Pinokrol Litro">
+            <img src="Pinokrol Litro.jpg"alt="Producto_ 267"><h4>Pinokrol Litro</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5505869</p>
+        </div>
+
+        <div class="producto" data-name="Prevent Kg">
+            <img src="Prevent Kg.jpg"alt="Producto_ 276"><h4>Prevent Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000022</p>
+        </div>
+
+        <div class="producto" data-name="Rinse Clean Kg">
+            <img src="Rinse Clean Kg.jpg"alt="Producto_ 286"><h4>Rinse Clean Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000850</p>
+        </div>
+
+        <div class="producto" data-name="Sanitizante Oxonia Active Kg">
+            <img src="Sanitizante Oxonia Active Kg.jpg"alt="Producto_ 304"><h4>Sanitizante Oxonia Active Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5005790</p>
+        </div>
+
+        <div class="producto" data-name="Sanitizante para Pisos Sani Step Kg">
+            <img src="Sanitizante para Pisos Sani Step Kg.jpg"alt="Producto_ 305"><h4>Sanitizante para Pisos Sani Step Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5006010</p>
+        </div>
+
+        <div class="producto" data-name="Solidex 4 gr">
+            <img src="Solidex 4 gr.jpg"alt="Producto_ 310"><h4>Solidex 4 gr</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000845</p>
+        </div>
+
+        <div class="producto" data-name="Stell Brite Kg">
+            <img src="Stell Brite Kg.jpg"alt="Producto_ 313"><h4>Stell Brite Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000846</p>
+        </div>
+
+        <div class="producto" data-name="Sulfito de Sodio Kg">
+            <img src="Sulfito de Sodio Kg.jpg"alt="Producto_ 314"><h4>Sulfito de Sodio Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000052</p>
+        </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar en EPP...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+              <div class="container"> <div class="fila">
+
+        <div class="producto" data-name="Antebrazo De Carnaza Con Ojillo De Metal">
+            <img src="Antebrazo De Carnaza Con Ojillo De Metal.jpg"alt="Producto_ 25"><h4>Antebrazo De Carnaza Con Ojillo De Metal</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506417</p>
+        </div>
+
+        <div class="producto" data-name="Barbiquejo de Elastico para Casco de Seguridad">
+            <img src="Barbiquejo de Elastico para Casco de Seguridad.jpg"alt="Producto_ 30"><h4>Barbiquejo de Elastico para Casco de Seguridad</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5524482</p>
+        </div>
+
+        <div class="producto" data-name="Base de Bloqueo Grande para Valvulas Universales">
+            <img src="Base de Bloqueo Grande para Valvulas Universales.jpg"alt="Producto_ 33"><h4>Base de Bloqueo Grande para Valvulas Universales</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530750</p>
+        </div>
+
+        <div class="producto" data-name="Bengala Led">
+            <img src="Bengala Led.jpg"alt="Producto_ 36"><h4>Bengala Led</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524397</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo Ajustable para Valvulas de Compuerta">
+            <img src="Bloqueo Ajustable para Valvulas de Compuerta.jpg"alt="Producto_ 39"><h4>Bloqueo Ajustable para Valvulas de Compuerta</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524011</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo de Cable para Cualquier Proposito">
+            <img src="Bloqueo de Cable para Cualquier Proposito.jpg"alt="Producto_ 40"><h4>Bloqueo de Cable para Cualquier Proposito</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530733</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo de Valvula Universal con Cable de Mylon">
+            <img src="Bloqueo de Valvula Universal con Cable de Mylon.jpg"alt="Producto_ 41"><h4>Bloqueo de Valvula Universal con Cable de Mylon</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524006</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo Grande Prinzing para Valvulas de Bola">
+            <img src="Bloqueo Grande Prinzing para Valvulas de Bola.jpg"alt="Producto_ 42"><h4>Bloqueo Grande Prinzing para Valvulas de Bola</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530748</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo Prinzing para Valvulas de Bola">
+            <img src="Bloqueo Prinzing para Valvulas de Bola.jpg"alt="Producto_ 43"><h4>Bloqueo Prinzing para Valvulas de Bola</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530749</p>
+        </div>
+       <div class="producto" data-name="Bota de Hule con Casquillo">
+            <img src="Bota de Hule con Casquillo.jpg" alt="Producto 55">
+            <h4>Bota de Hule con Casquillo</h4>
+            <p>EPP</p>   <p>Calzado</p>
+           <script>
+    function cambiarSKU0() {
+      var select = document.getElementById("talla0");
+      var SKU0 = document.getElementById("SKU0");
+      
+      if (select.value === "26") {
+        SKU0.innerHTML = "5506389";
+      } else if (select.value === "27") {
+        SKU0.innerHTML = "5506390";  
+      } else if (select.value === "28") {
+        SKU0.innerHTML = "5506391";
+      } else if (select.value === "29") {
+        SKU0.innerHTML = "5506392";
+      } else if (select.value === "30") {
+        SKU0.innerHTML = "5506431";
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla0">Talla:</label>
+  <select id="talla0" onchange="cambiarSKU0()">
+    <option value="26">26</option>
+    <option value="27">27</option>
+    <option value="28">28</option>
+    <option value="29">29</option>
+    <option value="30">30</option>
+
+  </select>
+  <p>SKU: <span id="SKU0">5506389</span></p>
+     
+    </div>
+<div class="producto" data-name="Botas Procliff">
+            <img src="Botas Procliff.jpg" alt="Producto 56">
+            <h4>Botas Procliff </h4>
+            <p>EPP</p>   <p>Calzado</p>
+           <script>
+    function cambiarSKU1() {
+      var select = document.getElementById("talla1");
+      var SKU1 = document.getElementById("SKU1");
+      
+      if (select.value === "22") {
+        SKU1.innerHTML = "5542030";
+      } else if (select.value === "23") {
+        SKU1.innerHTML = "5542029";  
+      } else if (select.value === "24") {
+        SKU1.innerHTML = "5542028";
+      } else if (select.value === "25") {
+        SKU1.innerHTML = "5542027";
+      } else if (select.value === "26") {
+        SKU1.innerHTML = "5542026";
+      } else if (select.value === "27") {
+        SKU1.innerHTML = "5542025";
+      } else if (select.value === "28") {
+        SKU1.innerHTML = "5542024";
+      } else if (select.value === "29") {
+        SKU1.innerHTML = "5542023";
+      } else if (select.value === "30") {
+        SKU1.innerHTML = "5542022";
+      } else if (select.value === "31") {
+        SKU1.innerHTML = "5542021";
+      } else if (select.value === "32") {
+        SKU1.innerHTML = "5542020";
+           
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla1">Talla:</label>
+  <select id="talla1" onchange="cambiarSKU1()">
+    <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+    <option value="25">25</option>
+    <option value="26">26</option>
+    <option value="27">27</option>
+    <option value="28">28</option>
+    <option value="29">29</option>
+    <option value="30">30</option>
+    <option value="31">31</option>
+    <option value="32">32</option>
+  </select>
+  <p>SKU: <span id="SKU1">5542030</span></p>
+     
+    </div>
+        <div class="producto" data-name="Botas Rhino">
+            <img src="Botas Rhino.jpg" alt="Producto 57">
+            <h4>Botas Rhino </h4>
+            <p>EPP</p>    <p>Calzado</p>
+             <script>
+    function cambiarSKU2() {
+      var select = document.getElementById("talla2");
+      var SKU2 = document.getElementById("SKU2");
+      
+      if (select.value === "23") {
+        SKU2.innerHTML = "5530796";
+      } else if (select.value === "23.5") {
+        SKU2.innerHTML = "5530797";
+      } else if (select.value === "24") {
+        SKU2.innerHTML = "5530798";
+      } else if (select.value === "24.5") {
+        SKU2.innerHTML = "5530799";
+      } else if (select.value === "25") {
+        SKU2.innerHTML = "5530800";
+      } else if (select.value === "25.5") {
+        SKU2.innerHTML = "5530801";
+      } else if (select.value === "26") {
+        SKU2.innerHTML = "5530802";
+      } else if (select.value === "26.5") {
+        SKU2.innerHTML = "5530803";
+        } else if (select.value === "27") {
+        SKU2.innerHTML = "5530804";
+      } else if (select.value === "27.5") {
+        SKU2.innerHTML = "5530805";
+      } else if (select.value === "28") {
+        SKU2.innerHTML = "5530806";
+      } else if (select.value === "28.5") {
+        SKU2.innerHTML = "5530807";
+      } else if (select.value === "29") {
+        SKU2.innerHTML = "5530808";
+      } else if (select.value === "29.5") {
+        SKU2.innerHTML = "5530809";
+      } else if (select.value === "30") {
+        SKU2.innerHTML = "5530810";  
+      } else if (select.value === "31.5") {
+        SKU2.innerHTML = "5530811";
+      } else if (select.value === "32") {
+        SKU2.innerHTML = "5530812";
+           
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla2">Talla:</label>
+  <select id="talla2" onchange="cambiarSKU2()">
+    <option value="23">23</option>
+    <option value="23.5">23.5</option>
+    <option value="24">24</option>
+    <option value="24.5">24.5</option>   
+    <option value="25">25</option>
+    <option value="25.5">25.5</option>  
+    <option value="26">26</option>
+    <option value="26.5">26.5</option>
+    <option value="27">27</option>
+    <option value="27.5">27.5</option>
+    <option value="28">28</option>
+    <option value="28.5">28.5</option>
+    <option value="29">29</option>  
+    <option value="29.5">29.5</option>
+    <option value="30">30</option>
+    <option value="31.5">31.5</option>
+    <option value="32">32</option>
+  </select>
+  <p>SKU: <span id="SKU2">5530796</span></p>
+        </div>
+
+        <div class="producto" data-name="Broche para Bloqueo Grupal 1.5 in">
+            <img src="Broche para Bloqueo Grupal 1.5 in.jpg"alt="Producto_ 61"><h4>Broche para Bloqueo Grupal 1.5 in</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:4243629</p>
+        </div>
+
+        <div class="producto" data-name="Cadena Amarilla Plastica 3 in">
+            <img src="Cadena Amarilla Plastica 3 in.jpg"alt="Producto_ 64"><h4>Cadena Amarilla Plastica 3 in</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5523909</p>
+        </div>
+        <div class="producto" data-name="Candado de Seguridad Color Azul">
+            <img src="Candado de Seguridad Color Azul.jpg" alt="Producto 70">
+            <h4>Candado de Seguridad Color Azul</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU3() {
+      var select = document.getElementById("Llaves");
+      var SKU3 = document.getElementById("SKU3");
+      
+      if (select.value === "1") {
+        SKU3.innerHTML = "5541030";
+          } else if (select.value === "2") {
+        SKU3.innerHTML = "4233278";
+
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="Llaves">LLaves:</label>
+  <select id="Llaves" onchange="cambiarSKU3()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    
+
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU3">5541030</span></p>
+        </div>
+
+        <div class="producto" data-name="Candado de Seguridad Color Rojo">
+            <img src="Candado de Seguridad Color Rojo.jpg"alt="Producto_ 71"><h4>Candado de Seguridad Color Rojo</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524014</p>
+        </div>
+
+        <div class="producto" data-name="Candado de Seguridad Color Verde">
+            <img src="Candado de Seguridad Color Verde.jpg"alt="Producto_ 72"><h4>Candado de Seguridad Color Verde</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:4231438</p>
+        </div>
+
+        <div class="producto" data-name="Candado Dielectrico para Bloqueo Color Azul">
+            <img src="Candado Dielectrico para Bloqueo Color Azul.jpg"alt="Producto_ 73"><h4>Candado Dielectrico para Bloqueo Color Azul</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5536106</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho 6001 para Vapores Organicos">
+            <img src="Cartucho 6001 para Vapores Organicos.jpg"alt="Producto_ 79"><h4>Cartucho 6001 para Vapores Organicos</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5506435</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho de Repuesto Canister">
+            <img src="Cartucho de Repuesto Canister.jpg"alt="Producto_ 86"><h4>Cartucho de Repuesto Canister</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506426</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho para Amoniaco y Metilamina">
+            <img src="Cartucho para Amoniaco y Metilamina.jpg"alt="Producto_ 99"><h4>Cartucho para Amoniaco y Metilamina</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506480</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho para Vapores Organicos (Cloro, Hidrógeno, Dioxido de Azufre, Sulfuro y Fluoruro de Hidrogeno">
+            <img src="Cartucho para Vapores Organicos (Cloro, Hidrógeno, Dioxido de Azufre, Sulfuro y Fluoruro de Hidrogeno.jpg"alt="Producto_ 100"><h4>Cartucho para Vapores Organicos (Cloro, Hidrógeno, Dioxido de Azufre, Sulfuro y Fluoruro de Hidrogeno</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506479</p>
+        </div>
+
+        <div class="producto" data-name="Casco Azul BUM CAP">
+            <img src="Casco Azul BUM CAP.jpg"alt="Producto_ 102"><h4>Casco Azul BUM CAP</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5517586</p>
+        </div>
+
+        <div class="producto" data-name="Casco Blanco BUM CAP">
+            <img src="Casco Blanco BUM CAP.jpg"alt="Producto_ 103"><h4>Casco Blanco BUM CAP</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5517584</p>
+        </div>
+
+        <div class="producto" data-name="Casco Blanco MCA">
+            <img src="Casco Blanco MCA.jpg"alt="Producto_ 104"><h4>Casco Blanco MCA</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541826</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Amarillo">
+            <img src="Casco Infracap Amarillo.jpg"alt="Producto_ 105"><h4>Casco Infracap Amarillo</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5533306</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Azul">
+            <img src="Casco Infracap Azul.jpg"alt="Producto_ 106"><h4>Casco Infracap Azul</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506506</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Rojo">
+            <img src="Casco Infracap Rojo.jpg"alt="Producto_ 107"><h4>Casco Infracap Rojo</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5533305</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Verde">
+            <img src="Casco Infracap Verde.jpg"alt="Producto_ 108"><h4>Casco Infracap Verde</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5526770</p>
+        </div>
+
+        <div class="producto" data-name="Casco Naranja MCA">
+            <img src="Casco Naranja MCA.jpg"alt="Producto_ 109"><h4>Casco Naranja MCA</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541827</p>
+        </div>
+     <div class="producto" data-name="Chaleco Alta Visibilidad 1 Color Naranja">
+            <img src="Chaleco Alta Visibilidad 1 Color Naranja.jpg" alt="Producto 118">
+            <h4>Chaleco Alta Visibilidad 1 Color Naranja </h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU5() {
+      var select = document.getElementById("talla4");
+      var SKU5 = document.getElementById("SKU5");
+      
+      if (select.value === "M") {
+        SKU5.innerHTML = "5528862";
+      } else if (select.value === "G") {
+        SKU5.innerHTML = "5528863";
+             
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla4">Talla:</label>
+  <select id="talla4" onchange="cambiarSKU5()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+
+  </select>
+  <p>SKU: <span id="SKU5">5528862</span></p>
+        </div>
+        <div class="producto" data-name="Chaleco Alta Visibilidad Color Naranja">
+            <img src="Chaleco Alta Visibilidad Color Naranja.jpg" alt="Producto 119">
+            <h4>Chaleco Alta Visibilidad  Color Naranja </h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU6() {
+      var select = document.getElementById("talla5");
+      var SKU6 = document.getElementById("SKU6");
+      
+      if (select.value === "M") {
+        SKU6.innerHTML = "5520968";
+      } else if (select.value === "G") {
+        SKU6.innerHTML = "5520973";
+      } else if (select.value === "XG") {
+        SKU6.innerHTML = "5520951";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla5">Talla:</label>
+  <select id="talla5" onchange="cambiarSKU6()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+
+  </select>
+  <p>SKU: <span id="SKU6">5520968</span></p>
+        </div>
+
+        <div class="producto" data-name="Chaleco de Malla Color Azul">
+            <img src="Chaleco de Malla Color Azul.jpg"alt="Producto_ 120"><h4>Chaleco de Malla Color Azul</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5521045</p>
+        </div>
+
+        <div class="producto" data-name="Chaleco para Rescatista">
+            <img src="Chaleco para Rescatista.jpg"alt="Producto_ 121"><h4>Chaleco para Rescatista</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5524453</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Antiderrapante 3 in Precaucion">
+            <img src="Cinta Antiderrapante 3 in Precaucion.jpg"alt="Producto_ 124"><h4>Cinta Antiderrapante 3 in Precaucion</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:4245727</p>
+        </div>
+
+        <div class="producto" data-name="Cofia Lavable">
+            <img src="Cofia Lavable.jpg"alt="Producto_ 134"><h4>Cofia Lavable</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506500</p>
+        </div>
+
+        <div class="producto" data-name="Cristal Claro para Careta de Soldador">
+            <img src="Cristal Claro para Careta de Soldador.jpg"alt="Producto_ 136"><h4>Cristal Claro para Careta de Soldador</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506063</p>
+        </div>
+
+        <div class="producto" data-name="Cubre Bota Desechable">
+            <img src="Cubre Bota Desechable.jpg"alt="Producto_ 141"><h4>Cubre Bota Desechable</h4><p>EPP</p>
+            <p>Calzado</p>
+            <p>SKU:5524987</p>
+        </div>
+        <div class="producto" data-name="Faja Lumbar">
+            <img src="Faja Lumbar.jpg" alt="Producto 153">
+            <h4>Faja Lumbar</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU7() {
+      var select = document.getElementById("talla6");
+      var SKU7 = document.getElementById("SKU7");
+      
+      if (select.value === "S") {
+        SKU7.innerHTML = "5507916";
+      } else if (select.value === "M") {
+        SKU7.innerHTML = "5506402";
+      } else if (select.value === "G") {
+        SKU7.innerHTML = "5506419";
+      } else if (select.value === "XG") {
+        SKU7.innerHTML = "5506472";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla6">Talla:</label>
+  <select id="talla6" onchange="cambiarSKU7()">
+    <option value="M">S</option>
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+
+  </select>
+  <p>SKU: <span id="SKU7">5507916</span></p>
+        </div>
+
+        <div class="producto" data-name="Gorra Protectora de Impacto">
+            <img src="Gorra Protectora de Impacto.jpg"alt="Producto_ 165"><h4>Gorra Protectora de Impacto</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5526580</p>
+        </div>
+ <div class="producto" data-name="Guante Anticorte D-ROC">
+            <img src="Guante Anticorte D-ROC.jpg" alt="Producto 179">
+            <h4>Guante Anticorte D-ROC</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU8() {
+      var select = document.getElementById("talla7");
+      var SKU8 = document.getElementById("SKU8");
+      
+      if (select.value === "6") {
+        SKU8.innerHTML = "5539343";
+      } else if (select.value === "7") {
+        SKU8.innerHTML = "5539344";
+      } else if (select.value === "8") {
+        SKU8.innerHTML = "5539345";
+      } else if (select.value === "9") {
+        SKU8.innerHTML = "5539346";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla7">Talla:</label>
+  <select id="talla7" onchange="cambiarSKU8()">
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+
+  </select>
+  <p>SKU: <span id="SKU8">5539343</span></p>
+        </div>
+        <div class="producto" data-name="Guante Anticorte MAPA">
+            <img src="Guante Anticorte MAPA.jpg" alt="Producto 180">
+            <h4>Guante Anticorte MAPA</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU9() {
+      var select = document.getElementById("talla8");
+      var SKU9 = document.getElementById("SKU9");
+      
+      if (select.value === "8") {
+        SKU9.innerHTML = "5527331";
+      } else if (select.value === "9") {
+        SKU9.innerHTML = "5527332";
+      } else if (select.value === "10") {
+        SKU9.innerHTML = "5527333";
+      } else if (select.value === "12") {
+        SKU9.innerHTML = "5521186";
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla8">Talla:</label>
+  <select id="talla8" onchange="cambiarSKU9()">
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="12">12</option>
+  
+  </select>
+  <p>SKU: <span id="SKU9">5527331</span></p>
+        </div>
+        <div class="producto" data-name="Guante Anticorte Quimicos SHOWA">
+            <img src="Guante Anticorte Quimicos SHOWA.jpg" alt="Producto 181">
+            <h4>Guante Anticorte Quimicos SHOWA</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU10() {
+      var select = document.getElementById("talla9");
+      var SKU10 = document.getElementById("SKU10");
+      
+      if (select.value === "8") {
+        SKU10.innerHTML = "5537483";
+      } else if (select.value === "9") {
+        SKU10.innerHTML = "5537480";
+      } else if (select.value === "10") {
+        SKU10.innerHTML = "5537481";
+    
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla9">Talla:</label>
+  <select id="talla9" onchange="cambiarSKU10()">
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  
+  </select>
+  <p>SKU: <span id="SKU10">5537483</span></p>
+        </div>
+        <div class="producto" data-name="Guante Color Cromo de Canraza">
+            <img src="Guante Color Cromo de Canraza.jpg" alt="Producto 182">
+            <h4>Guante Color Cromo de Canraza</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU11() {
+      var select = document.getElementById("talla10");
+      var SKU11 = document.getElementById("SKU11");
+      
+      if (select.value === "9") {
+        SKU11.innerHTML = "5506425";
+      } else if (select.value === "10") {
+        SKU11.innerHTML = "5506422";
+      } else if (select.value === "12") {
+        SKU11.innerHTML = "5506424";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla10">Talla:</label>
+  <select id="talla10" onchange="cambiarSKU11()">
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="12">12</option>
+  
+  </select>
+  <p>SKU: <span id="SKU11">5506425</span></p>
+        </div>
+        <div class="producto" data-name="Guante de Hule Negro Adex">
+            <img src="Guante de Hule Negro Adex.jpg" alt="Producto 183">
+            <h4>Guante de Hule Negro Adex</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU12() {
+      var select = document.getElementById("talla11");
+      var SKU12 = document.getElementById("SKU12");
+      
+      if (select.value === "9") {
+        SKU12.innerHTML = "5506408";
+      } else if (select.value === "10") {
+        SKU12.innerHTML = "5506409";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla11">Talla:</label>
+  <select id="talla11" onchange="cambiarSKU12()">
+    <option value="9">9</option>
+    <option value="10">10</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU12">5506408</span></p>
+        </div>
+
+        <div class="producto" data-name="Guante de Nitrilo Besto">
+            <img src="Guante de Nitrilo Besto.jpg"alt="Producto_ 184"><h4>Guante de Nitrilo Besto</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506473</p>
+        </div>
+<div class="producto" data-name="Guante de Protección HY-FLEX">
+            <img src="Guante de Protección  HY FLEX.jpg" alt="Producto 185">
+            <h4>Guante de Protección HY-FLEX</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU13() {
+      var select = document.getElementById("talla12");
+      var SKU13 = document.getElementById("SKU13");
+      
+      if (select.value === "8") {
+        SKU13.innerHTML = "5519626";
+          } else if (select.value === "9") {
+        SKU13.innerHTML = "5520091";
+          } else if (select.value === "10") {
+        SKU13.innerHTML = "5520250";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla12">Talla:</label>
+  <select id="talla12" onchange="cambiarSKU13()">
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU13">5519626</span></p>
+        </div>
+        <div class="producto" data-name="Guante en Piel Tipo Electricista">
+            <img src="Guante en Piel Tipo Electricista.jpg" alt="Producto 186">
+            <h4>Guante en Piel Tipo Electricista</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU14() {
+      var select = document.getElementById("talla13");
+      var SKU14 = document.getElementById("SKU14");
+      
+      if (select.value === "9") {
+        SKU14.innerHTML = "5506489";
+          } else if (select.value === "10") {
+        SKU14.innerHTML = "5506498";
+          } else if (select.value === "11") {
+        SKU14.innerHTML = "5506499";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla13">Talla:</label>
+  <select id="talla13" onchange="cambiarSKU14()">
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU14">5506489</span></p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo con 100 pz">
+            <img src="Guantes de Nitrilo con 100 pz.jpg"alt="Producto_ 187"><h4>Guantes de Nitrilo con 100 pz</h4><p>EPP</p>
+            <p>Laboratorio</p>
+            <p>SKU:5519761</p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo de Manga Corta con 100 pzs">
+            <img src="Guantes de Nitrilo de Manga Corta con 100 pzs.jpg"alt="Producto_ 188"><h4>Guantes de Nitrilo de Manga Corta con 100 pzs</h4><p>EPP</p>
+            <p>Laboratorio</p>
+            <p>SKU:5520030</p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo de Manga Larga">
+            <img src="Guantes de Nitrilo de Manga Larga.jpg"alt="Producto_ 189"><h4>Guantes de Nitrilo de Manga Larga</h4><p>EPP</p>
+            <p>Limpieza</p>
+            <p>SKU:5518341</p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo Purpura de Manga Corta con 100 pzs">
+            <img src="Guantes de Nitrilo Purpura de Manga Corta con 100 pzs.jpg"alt="Producto_ 190"><h4>Guantes de Nitrilo Purpura de Manga Corta con 100 pzs</h4><p>EPP</p>
+            <p>Laboratorio</p>
+            <p>SKU:5520020</p>
+        </div>
+ <div class="producto" data-name="Impermeable Chamarra de Color Amarillo">
+            <img src="Impermeable Chamarra Color Amarillo.jpg" alt="Producto 200">
+            <h4>Impermeable Chamarra de Color Amarillo </h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU4() {
+      var select = document.getElementById("talla3");
+      var SKU4 = document.getElementById("SKU4");
+      
+      if (select.value === "M") {
+        SKU4.innerHTML = "5506468";
+      } else if (select.value === "G") {
+        SKU4.innerHTML = "5506469";
+      } else if (select.value === "XG") {
+        SKU4.innerHTML = "5541922";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla3">Talla:</label>
+  <select id="talla3" onchange="cambiarSKU4()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+    
+
+  
+  </select>
+  <p>SKU: <span id="SKU4">5506468</span></p>
+        </div>
+        <div class="producto" data-name="Impermeable Pantalon  Color Amarillo">
+            <img src="Impermeable Pantalon  Color Amarillo.jpg" alt="Producto 201">
+            <h4>Impermeable Pantalon  Color Amarillo</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU15() {
+      var select = document.getElementById("talla14");
+      var SKU15 = document.getElementById("SKU15");
+      
+      if (select.value === "M") {
+        SKU15.innerHTML = "5506466";
+          } else if (select.value === "G") {
+        SKU15.innerHTML = "5506467";
+          } else if (select.value === "XG") {
+        SKU15.innerHTML = "5541921";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla14">Talla:</label>
+  <select id="talla14" onchange="cambiarSKU15()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU15">5506466</span></p>
+        </div>
+
+        <div class="producto" data-name="Lente de Seguridad">
+            <img src="Lente de Seguridad.jpg"alt="Producto_ 212"><h4>Lente de Seguridad</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5540479</p>
+        </div>
+
+        <div class="producto" data-name="Lente de Seguridad Antiparra">
+            <img src="Lente de Seguridad Antiparra.jpg"alt="Producto_ 213"><h4>Lente de Seguridad Antiparra</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541911</p>
+        </div>
+
+        <div class="producto" data-name="Lente de Seguridad Lente sobre Lente">
+            <img src="Lente de Seguridad Lente sobre Lente.jpg"alt="Producto_ 214"><h4>Lente de Seguridad Lente sobre Lente</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5513660</p>
+        </div>
+
+        <div class="producto" data-name="Manga Anticorte">
+            <img src="Manga Anticorte.jpg"alt="Producto_ 224"><h4>Manga Anticorte</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5525030</p>
+        </div>
+
+        <div class="producto" data-name="Manga Indicadora de Viento 10 in">
+            <img src="Manga Indicadora de Viento 10 in.jpg"alt="Producto_ 225"><h4>Manga Indicadora de Viento 10 in</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5523730</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla Cara Completa Advantage">
+            <img src="Mascarilla Cara Completa Advantage.jpg"alt="Producto_ 233"><h4>Mascarilla Cara Completa Advantage</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5527608</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla Cara Completa Ultravue">
+            <img src="Mascarilla Cara Completa Ultravue.jpg"alt="Producto_ 234"><h4>Mascarilla Cara Completa Ultravue</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5523843</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla de Soldador Moldex">
+            <img src="Mascarilla de Soldador Moldex.jpg"alt="Producto_ 235"><h4>Mascarilla de Soldador Moldex</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506482</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla Media Cara">
+            <img src="Mascarilla Media Cara.jpg"alt="Producto_ 236"><h4>Mascarilla Media Cara</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506434</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla para Polvo y Neblina">
+            <img src="Mascarilla para Polvo y Neblina.jpg"alt="Producto_ 237"><h4>Mascarilla para Polvo y Neblina</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506414</p>
+        </div>
+
+        <div class="producto" data-name="Mica para Careta Bionic">
+            <img src="Mica para Careta Bionic.jpg"alt="Producto_ 238"><h4>Mica para Careta Bionic</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5525683</p>
+        </div>
+
+        <div class="producto" data-name="Navaja de Seguridad Autoretractil">
+            <img src="Navaja de Seguridad Autoretractil.jpg"alt="Producto_ 241"><h4>Navaja de Seguridad Autoretractil</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5535400</p>
+        </div>
+
+        <div class="producto" data-name="Orejera Montable a Casco">
+            <img src="Orejera Montable a Casco.jpg"alt="Producto_ 243"><h4>Orejera Montable a Casco</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5537402</p>
+        </div>
+
+        <div class="producto" data-name="Overol Tyuek">
+            <img src="Overol Tyuek.jpg"alt="Producto_ 244"><h4>Overol Tyuek</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506475</p>
+        </div>
+
+        <div class="producto" data-name="Plantilla Anticorte">
+            <img src="Plantilla Anticorte.jpg"alt="Producto_ 271"><h4>Plantilla Anticorte</h4><p>EPP</p>
+            <p>Calzado</p>
+            <p>SKU:5526810</p>
+        </div>
+
+        <div class="producto" data-name="Prefiltro">
+            <img src="Prefiltro.jpg"alt="Producto_ 275"><h4>Prefiltro</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506436</p>
+        </div>
+
+        <div class="producto" data-name="Protector Facial Bionic">
+            <img src="Protector Facial Bionic.jpg"alt="Producto_ 278"><h4>Protector Facial Bionic</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5520820</p>
+        </div>
+
+        <div class="producto" data-name="Respirador MSA Miniscape">
+            <img src="Respirador MSA Miniscape.jpg"alt="Producto_ 285"><h4>Respirador MSA Miniscape</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541705</p>
+        </div>
+
+        <div class="producto" data-name="Rodillera Regular">
+            <img src="Rodillera Regular.jpg"alt="Producto_ 287"><h4>Rodillera Regular</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:4242875</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Señalamiento Peligro 12 cm x 50 m">
+            <img src="Rollo de Señalamiento Peligro 12 cm x 50 m.jpg"alt="Producto_ 291"><h4>Rollo de Señalamiento Peligro 12 cm x 50 m</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5506406</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Señalamiento Precaucion 12 cm x 50 m">
+            <img src="Rollo de Señalamiento Precaucion 12 cm x 50 m.jpg"alt="Producto_ 292"><h4>Rollo de Señalamiento Precaucion 12 cm x 50 m</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5506405</p>
+        </div>
+
+        <div class="producto" data-name="Suspension con Ajustes de Intervalos Mode para Casco">
+            <img src="Suspension con Ajustes de Intervalos Mode para Casco.jpg"alt="Producto_ 315"><h4>Suspension con Ajustes de Intervalos Mode para Casco</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506507</p>
+        </div>
+
+        <div class="producto" data-name="Tapon Auditivo de Cordon">
+            <img src="Tapon Auditivo de Cordon.jpg"alt="Producto_ 321"><h4>Tapon Auditivo de Cordon</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506415</p>
+        </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

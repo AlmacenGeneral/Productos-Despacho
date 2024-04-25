@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar en Solventes...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+   
+<div class="container"> <div class="fila">
+        <div class="producto" data-name="Aceite (39433735 Ingersoll Rand) Litro">
+            <img src="Aceite (39433735 Ingersoll Rand) Litro.jpg"alt="Producto_ 1"><h4>Aceite (39433735 Ingersoll Rand) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057265</p>
+        </div>
+
+        <div class="producto" data-name="Aceite (Mobil Delvac 1340) Litro">
+            <img src="Aceite (Mobil Delvac 1340) Litro.jpg"alt="Producto_ 2"><h4>Aceite (Mobil Delvac 1340) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057096</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Dielectrico de Aerosol 400 ml">
+            <img src="Aceite Dielectrico de Aerosol 400 ml.jpg"alt="Producto_ 3"><h4>Aceite Dielectrico de Aerosol 400 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057464</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Hidraulico (Mobil DTE 26) Litro">
+            <img src="Aceite Hidraulico (Mobil DTE 26) Litro.jpg"alt="Producto_ 4"><h4>Aceite Hidraulico (Mobil DTE 26) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057377</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil DTE 242) Litro">
+            <img src="Aceite Lubricante (Mobil DTE 242) Litro.jpg"alt="Producto_ 5"><h4>Aceite Lubricante (Mobil DTE 242) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4136419</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Almasol 680) Litro">
+            <img src="Aceite Lubricante (Almasol 680) Litro.jpg"alt="Producto_ 6"><h4>Aceite Lubricante (Almasol 680) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057481</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Duolec 1605) Litro">
+            <img src="Aceite Lubricante (Duolec 1605) Litro.jpg"alt="Producto_ 7"><h4>Aceite Lubricante (Duolec 1605) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057526</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Dte Oil Heavy Medium) con 208 Litros">
+            <img src="Aceite Lubricante (Mobil Dte Oil Heavy Medium) con 208 Litros.jpg"alt="Producto_ 8"><h4>Aceite Lubricante (Mobil Dte Oil Heavy Medium) con 208 Litros</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056368</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Dte Oil Light) con 208 Litros">
+            <img src="Aceite Lubricante (Mobil Dte Oil Light) con 208 Litros.jpg"alt="Producto_ 9"><h4>Aceite Lubricante (Mobil Dte Oil Light) con 208 Litros</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056505</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Gear 600xp 200) Litro">
+            <img src="Aceite Lubricante (Mobil Gear 600xp 200) Litro.jpg"alt="Producto_ 10"><h4>Aceite Lubricante (Mobil Gear 600xp 200) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4018364</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Glygoyle 30) Litro">
+            <img src="Aceite Lubricante (Mobil Glygoyle 30) Litro.jpg"alt="Producto_ 11"><h4>Aceite Lubricante (Mobil Glygoyle 30) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056384</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Glygoyle 460) Litro">
+            <img src="Aceite Lubricante (Mobil Glygoyle 460) Litro.jpg"alt="Producto_ 12"><h4>Aceite Lubricante (Mobil Glygoyle 460) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057131</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil SHC 634) Litro">
+            <img src="Aceite Lubricante (Mobil SHC 634) Litro.jpg"alt="Producto_ 13"><h4>Aceite Lubricante (Mobil SHC 634) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056964</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Reflo 68) Litro">
+            <img src="Aceite Lubricante (Reflo 68) Litro.jpg"alt="Producto_ 14"><h4>Aceite Lubricante (Reflo 68) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4244153</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante 4150 h1 Quinplex con 208 Litros">
+            <img src="Aceite Lubricante 4150 h1 Quinplex con 208 Litros.jpg"alt="Producto_ 15"><h4>Aceite Lubricante 4150 h1 Quinplex con 208 Litros</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4269069</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante HEUFT Litro">
+            <img src="Aceite Lubricante HEUFT Litro.jpg"alt="Producto_ 16"><h4>Aceite Lubricante HEUFT Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057523</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante WD-40 de 3.78 L">
+            <img src="Aceite Lubricante WD-40 de 3.78 L.jpg"alt="Producto_ 17"><h4>Aceite Lubricante WD-40 de 3.78 L</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057151</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Mobil (DTE 27) Litro">
+            <img src="Aceite Mobil (DTE 27) Litro.jpg"alt="Producto_ 18"><h4>Aceite Mobil (DTE 27) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057095</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Superla White Oil Litro">
+            <img src="Aceite Superla White Oil Litro.jpg"alt="Producto_ 19"><h4>Aceite Superla White Oil Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:5005030</p>
+        </div>
+
+        <div class="producto" data-name="Adhesivo Permatex (Henkel) de 250 ml">
+            <img src="Adhesivo Permatex (Henkel) de 250 ml.jpg"alt="Producto_ 20"><h4>Adhesivo Permatex (Henkel) de 250 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053949</p>
+        </div>
+
+        <div class="producto" data-name="Aflojatodo Key Litro">
+            <img src="Aflojatodo Key Litro.jpg"alt="Producto_ 21"><h4>Aflojatodo Key Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057463</p>
+        </div>
+
+        <div class="producto" data-name="Alcohol etílico 70° G.L. Desnaturalizado Litro">
+            <img src="Alcohol etílico 70° G.L. Desnaturalizado Litro.jpg"alt="Producto_ 22"><h4>Alcohol etílico 70° G.L. Desnaturalizado Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5523881</p>
+        </div>
+
+        <div class="producto" data-name="Alcohol Etílico al 96% para Laboratorio Litro">
+            <img src="Alcohol Etílico al 96% para Laboratorio Litro.jpg"alt="Producto_ 23"><h4>Alcohol Etílico al 96% para Laboratorio Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053948</p>
+        </div>
+
+        <div class="producto" data-name="Alocohol Isopropilico en aerosol 280 g">
+            <img src="Alocohol Isopropilico en aerosol 280 g.jpg"alt="Producto_ 24"><h4>Alocohol Isopropilico en aerosol 280 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057201</p>
+        </div>
+
+        <div class="producto" data-name="Antiderrapante Cosmético para Bandas 250 g">
+            <img src="Antiderrapante Cosmético para Bandas 250 g.jpg"alt="Producto_ 26"><h4>Antiderrapante Cosmético para Bandas 250 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056344</p>
+        </div>
+
+        <div class="producto" data-name="Antiespumante Hach Litro">
+            <img src="Antiespumante Hach Litro.jpg"alt="Producto_ 27"><h4>Antiespumante Hach Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5003550</p>
+        </div>
+
+        <div class="producto" data-name="Barniz Aislante Eléctrico Litro">
+            <img src="Barniz Aislante Eléctrico Litro.jpg"alt="Producto_ 31"><h4>Barniz Aislante Eléctrico Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057853</p>
+        </div>
+
+        <div class="producto" data-name="Barniz Therm Litro">
+            <img src="Barniz Therm Litro.jpg"alt="Producto_ 32"><h4>Barniz Therm Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057858</p>
+        </div>
+
+        <div class="producto" data-name="Bicarbonato de Sodio G.I. Kg">
+            <img src="Bicarbonato de Sodio G.I. Kg.jpg"alt="Producto_ 37"><h4>Bicarbonato de Sodio G.I. Kg</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5000527</p>
+        </div>
+
+        <div class="producto" data-name="Empaquetadura Moldeable 400 g">
+            <img src="Empaquetadura Moldeable 400 g.jpg"alt="Producto_ 143"><h4>Empaquetadura Moldeable 400 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056355</p>
+        </div>
+
+        <div class="producto" data-name="Esmalte Acrilico Transparente Aerocomex  400 ml">
+            <img src="Esmalte Acrilico Transparente Aerocomex  400 ml.jpg"alt="Producto_ 150"><h4>Esmalte Acrilico Transparente Aerocomex  400 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5532804</p>
+        </div>
+
+        <div class="producto" data-name="Fijador de Roscas LOCTITE 262 con 10 ml">
+            <img src="Fijador de Roscas LOCTITE 262 con 10 ml.jpg"alt="Producto_ 156"><h4>Fijador de Roscas LOCTITE 262 con 10 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053969</p>
+        </div>
+
+        <div class="producto" data-name="Formajuntas Loctite 118.8 gr">
+            <img src="Formajuntas Loctite 118.8 gr.jpg"alt="Producto_ 159"><h4>Formajuntas Loctite 118.8 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057637</p>
+        </div>
+
+        <div class="producto" data-name="Glicerina 1 kg">
+            <img src="Glicerina 1 kg.jpg"alt="Producto_ 163"><h4>Glicerina 1 kg</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4018343</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Aliplex 2) Kg">
+            <img src="Grasa (Aliplex 2) Kg.jpg"alt="Producto_ 168"><h4>Grasa (Aliplex 2) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057061</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Fluida Aliplex 00) Kg">
+            <img src="Grasa (Fluida Aliplex 00) Kg.jpg"alt="Producto_ 170"><h4>Grasa (Fluida Aliplex 00) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4142989</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil FM 222) Kg">
+            <img src="Grasa (Mobil FM 222) Kg.jpg"alt="Producto_ 171"><h4>Grasa (Mobil FM 222) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4090015</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil SHC 007) Kg">
+            <img src="Grasa (Mobil SHC 007) Kg.jpg"alt="Producto_ 172"><h4>Grasa (Mobil SHC 007) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056978</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil SHC 100) Kg">
+            <img src="Grasa (Mobil SHC 100) Kg.jpg"alt="Producto_ 173"><h4>Grasa (Mobil SHC 100) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057567</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil SHC 460) Kg">
+            <img src="Grasa (Mobil SHC 460) Kg.jpg"alt="Producto_ 174"><h4>Grasa (Mobil SHC 460) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057569</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobilith AW2) Kg">
+            <img src="Grasa (Mobilith AW2) Kg.jpg"alt="Producto_ 175"><h4>Grasa (Mobilith AW2) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056471</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobilux EP 1) Kg">
+            <img src="Grasa (Mobilux EP 1) Kg.jpg"alt="Producto_ 176"><h4>Grasa (Mobilux EP 1) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057026</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobilux EP 2) Kg">
+            <img src="Grasa (Mobilux EP 2) Kg.jpg"alt="Producto_ 177"><h4>Grasa (Mobilux EP 2) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4033957</p>
+        </div>
+
+        <div class="producto" data-name="Grasa Fuchs 400 gr">
+            <img src="Grasa Fuchs 400 gr.jpg"alt="Producto_ 178"><h4>Grasa Fuchs 400 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056792</p>
+        </div>
+
+        <div class="producto" data-name="Limpiador de Superficie Tipo Espuma 400 g">
+            <img src="Limpiador de Superficie Tipo Espuma 400 g.jpg"alt="Producto_ 216"><h4>Limpiador de Superficie Tipo Espuma 400 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056842</p>
+        </div>
+
+        <div class="producto" data-name="Loctite para Partes Cilindricas 50 ml">
+            <img src="Loctite para Partes Cilindricas 50 ml.jpg"alt="Producto_ 220"><h4>Loctite para Partes Cilindricas 50 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053959</p>
+        </div>
+
+        <div class="producto" data-name="Lubricador Automatico SKF System 24 con 60 ml">
+            <img src="Lubricador Automatico SKF System 24 con 60 ml.jpg"alt="Producto_ 221"><h4>Lubricador Automatico SKF System 24 con 60 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057435</p>
+        </div>
+
+        <div class="producto" data-name="Lubricante Antiadherente LOCTITE LB 8150 con 453 g">
+            <img src="Lubricante Antiadherente LOCTITE LB 8150 con 453 g.jpg"alt="Producto_ 222"><h4>Lubricante Antiadherente LOCTITE LB 8150 con 453 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053951</p>
+        </div>
+
+        <div class="producto" data-name="Pasta de Diamante Blanca para Pulir 5gr">
+            <img src="Pasta de Diamante Blanca para Pulir 5gr.jpg"alt="Producto_ 259"><h4>Pasta de Diamante Blanca para Pulir 5gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4233254</p>
+        </div>
+
+        <div class="producto" data-name="Pasta de Soldadura con 60 gr">
+            <img src="Pasta de Soldadura con 60 gr.jpg"alt="Producto_ 261"><h4>Pasta de Soldadura con 60 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4185544</p>
+        </div>
+
+        <div class="producto" data-name="Pegamento de Contacto Resistol 5000 Litro">
+            <img src="Pegamento de Contacto Resistol 5000 Litro.jpg"alt="Producto_ 264"><h4>Pegamento de Contacto Resistol 5000 Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4158534</p>
+        </div>
+
+        <div class="producto" data-name="Philips 175 Watt Foco (Bombilla) de Halogenuros Metalicos">
+            <img src="Philips 175 Watt Foco (Bombilla) de Halogenuros Metalicos.jpg"alt="Producto_ 266"><h4>Philips 175 Watt Foco (Bombilla) de Halogenuros Metalicos</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4184746</p>
+        </div>
+
+        <div class="producto" data-name="Pintura Vinil Acrilica Blanca Vinimex Litro">
+            <img src="Pintura Vinil Acrilica Blanca Vinimex Litro.jpg"alt="Producto_ 268"><h4>Pintura Vinil Acrilica Blanca Vinimex Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4236449</p>
+        </div>
+
+        <div class="producto" data-name="Polymar 75 Color Blanco con 15 litros">
+            <img src="Polymar 75 Color Blanco con 15 litros.jpg"alt="Producto_ 274"><h4>Polymar 75 Color Blanco con 15 litros</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4236485</p>
+        </div>
+
+        <div class="producto" data-name="Resina Epoxi 3M Scotchcast con 418 Gr">
+            <img src="Resina Epoxi 3M Scotchcast con 418 Gr.jpg"alt="Producto_ 282"><h4>Resina Epoxi 3M Scotchcast con 418 Gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4080551</p>
+        </div>
+
+        <div class="producto" data-name="Resina Epoxi 3M Scotchcast con 90 Gr">
+            <img src="Resina Epoxi 3M Scotchcast con 90 Gr.jpg"alt="Producto_ 283"><h4>Resina Epoxi 3M Scotchcast con 90 Gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053957</p>
+        </div>
+
+        <div class="producto" data-name="Resina Epoxi Plasti Acero en Jeringa 25 ml">
+            <img src="Resina Epoxi Plasti Acero en Jeringa 25 ml.jpg"alt="Producto_ 284"><h4>Resina Epoxi Plasti Acero en Jeringa 25 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4188277</p>
+        </div>
+
+        <div class="producto" data-name="Silicon Forma Juntex RTV Negro 80 ml">
+            <img src="Silicon Forma Juntex RTV Negro 80 ml.jpg"alt="Producto_ 307"><h4>Silicon Forma Juntex RTV Negro 80 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4031302</p>
+        </div>
+
+        <div class="producto" data-name="Silicon LOCTITE 5920 Copper 56 gr">
+            <img src="Silicon LOCTITE 5920 Copper 56 gr.jpg"alt="Producto_ 308"><h4>Silicon LOCTITE 5920 Copper 56 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056356</p>
+        </div>
+
+        <div class="producto" data-name="Silicona Pegaset 100 ml">
+            <img src="Silicona Pegaset 100 ml.jpg"alt="Producto_ 309"><h4>Silicona Pegaset 100 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053950</p>
+        </div>
+
+        <div class="producto" data-name="Solvente Descabonizante Batech Litro">
+            <img src="Solvente Descabonizante Batech Litro.jpg"alt="Producto_ 311"><h4>Solvente Descabonizante Batech Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053968</p>
+        </div>
+
+        <div class="producto" data-name="Solvente Dielectrico Desengrasante Litro">
+            <img src="Solvente Dielectrico Desengrasante Litro.jpg"alt="Producto_ 312"><h4>Solvente Dielectrico Desengrasante Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053958</p>
+        </div>
+
+        <div class="producto" data-name="Thinner Comex Litro">
+            <img src="Thinner Comex Litro.jpg"alt="Producto_ 323"><h4>Thinner Comex Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4074557</p>
+        </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

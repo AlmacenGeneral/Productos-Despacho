@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar en limpieza...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+              <div class="container"> <div class="fila">
+         
+        <div class="producto" data-name="Atomizadores de Plastico 500 ml">
+            <img src="Atomizadores de Plastico 500 ml.jpg"alt="Producto_ 29"><h4>Atomizadores de Plastico 500 ml</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5521403</p>
+        </div>
+
+        <div class="producto" data-name="Brocha (Pinceleta) de 2 in">
+            <img src="Brocha (Pinceleta) de 2 in.jpg"alt="Producto_ 58"><h4>Brocha (Pinceleta) de 2 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:4187859</p>
+        </div>
+
+        <div class="producto" data-name="Brocha (Pinceleta) de 4 in">
+            <img src="Brocha (Pinceleta) de 4 in.jpg"alt="Producto_ 59"><h4>Brocha (Pinceleta) de 4 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:4014690</p>
+        </div>
+
+        <div class="producto" data-name="Cardetela de 50X50 (Paquete de 475)">
+            <img src="Cardetela de 50X50 (Paquete de 475).jpg"alt="Producto_ 74"><h4>Cardetela de 50X50 (Paquete de 475)</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5512664</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo  Swiss-Diary">
+            <img src="Cepillo  Swiss-Diary.jpg"alt="Producto_ 110"><h4>Cepillo  Swiss-Diary</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525762</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo Bi-nivel">
+            <img src="Cepillo Bi-nivel.jpg"alt="Producto_ 111"><h4>Cepillo Bi-nivel</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525757</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Alambre de Acero Inoxidable">
+            <img src="Cepillo de Alambre de Acero Inoxidable.jpg"alt="Producto_ 112"><h4>Cepillo de Alambre de Acero Inoxidable</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505872</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Ixtle">
+            <img src="Cepillo de Ixtle.jpg"alt="Producto_ 113"><h4>Cepillo de Ixtle</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505866</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Mano de Alambre Acero al Carbono">
+            <img src="Cepillo de Mano de Alambre Acero al Carbono.jpg"alt="Producto_ 114"><h4>Cepillo de Mano de Alambre Acero al Carbono</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505864</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Tanque Duro">
+            <img src="Cepillo de Tanque Duro.jpg"alt="Producto_ 115"><h4>Cepillo de Tanque Duro</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525390</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo Multisuperficies">
+            <img src="Cepillo Multisuperficies.jpg"alt="Producto_ 116"><h4>Cepillo Multisuperficies</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525778</p>
+        </div>
+
+        <div class="producto" data-name="Cesto para la Basura">
+            <img src="Cesto para la Basura.jpg"alt="Producto_ 117"><h4>Cesto para la Basura</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5502681</p>
+        </div>
+
+        <div class="producto" data-name="Cubeta de Plastico de 19 L">
+            <img src="Cubeta de Plastico de 19 L.jpg"alt="Producto_ 139"><h4>Cubeta de Plastico de 19 L</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5529197</p>
+        </div>
+
+        <div class="producto" data-name="Cubeta Kimkare de 18 L">
+            <img src="Cubeta Kimkare de 18 L.jpg"alt="Producto_ 140"><h4>Cubeta Kimkare de 18 L</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5505884</p>
+        </div>
+
+        <div class="producto" data-name="Escoba de Mijo de 7 hilos">
+            <img src="Escoba de Mijo de 7 hilos.jpg"alt="Producto_ 145"><h4>Escoba de Mijo de 7 hilos</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505860</p>
+        </div>
+
+        <div class="producto" data-name="Escoba de Plastico">
+            <img src="Escoba de Plastico.jpg"alt="Producto_ 146"><h4>Escoba de Plastico</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5510925</p>
+        </div>
+
+        <div class="producto" data-name="Escoba tipo Abanico">
+            <img src="Escoba tipo Abanico.jpg"alt="Producto_ 147"><h4>Escoba tipo Abanico</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5527691</p>
+        </div>
+
+        <div class="producto" data-name="Escobillon de 0.5 in">
+            <img src="Escobillon de 0.5 in.jpg"alt="Producto_ 148"><h4>Escobillon de 0.5 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525773</p>
+        </div>
+
+        <div class="producto" data-name="Escobillon de 3/16 in">
+            <img src="Escobillon de 3 16 in.jpg"alt="Producto_ 149"><h4>Escobillon de 3/16 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505873</p>
+        </div>
+
+        <div class="producto" data-name="Fibra de Acero Inoxidable">
+            <img src="Fibra de Acero Inoxidable.jpg"alt="Producto_ 154"><h4>Fibra de Acero Inoxidable</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505867</p>
+        </div>
+
+        <div class="producto" data-name="Fibra Verde de Nylon">
+            <img src="Fibra Verde de Nylon.jpg"alt="Producto_ 155"><h4>Fibra Verde de Nylon</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5512669</p>
+        </div>
+
+        <div class="producto" data-name="Franela Tramo de 1 m">
+            <img src="Franela Tramo de 1 m.jpg"alt="Producto_ 161"><h4>Franela Tramo de 1 m</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5521368</p>
+        </div>
+
+        <div class="producto" data-name="Jabon de Espuma con 1 Litro">
+            <img src="Jabon de Espuma con 1 Litro.jpg"alt="Producto_ 202"><h4>Jabon de Espuma con 1 Litro</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5532430</p>
+        </div>
+
+        <div class="producto" data-name="Jabon de Espuma con 6 Cartuchos de 600 ml">
+            <img src="Jabon de Espuma con 6 Cartuchos de 600 ml.jpg"alt="Producto_ 204"><h4>Jabon de Espuma con 6 Cartuchos de 600 ml</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5536868</p>
+        </div>
+
+        <div class="producto" data-name="Jabon Detergente en Polvo en Bolsa de 10 kg">
+            <img src="Jabon Detergente en Polvo en Bolsa de 10 kg.jpg"alt="Producto_ 205"><h4>Jabon Detergente en Polvo en Bolsa de 10 kg</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5512671</p>
+        </div>
+
+        <div class="producto" data-name="Jabon Detergente en Polvo en Bolsa marca Roma de 1 kg">
+            <img src="Jabon Detergente en Polvo en Bolsa marca Roma de 1 kg.jpg"alt="Producto_ 206"><h4>Jabon Detergente en Polvo en Bolsa marca Roma de 1 kg</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5506867</p>
+        </div>
+
+        <div class="producto" data-name="Jabon Neutro Zote Barra de 400 gr">
+            <img src="Jabon Neutro Zote Barra de 400 gr.jpg"alt="Producto_ 207"><h4>Jabon Neutro Zote Barra de 400 gr</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5505876</p>
+        </div>
+
+        <div class="producto" data-name="Jalador de Doble Esponja">
+            <img src="Jalador de Doble Esponja.jpg"alt="Producto_ 208"><h4>Jalador de Doble Esponja</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5511361</p>
+        </div>
+
+        <div class="producto" data-name="Kit de Limpieza  HBO 90000">
+            <img src="Kit de Limpieza  HBO 90000.jpg"alt="Producto_ 209"><h4>Kit de Limpieza  HBO 90000</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5528438</p>
+        </div>
+
+        <div class="producto" data-name="Limpiador de Pisos Concentrado Litro">
+            <img src="Limpiador de Pisos Concentrado Litro.jpg"alt="Producto_ 215"><h4>Limpiador de Pisos Concentrado Litro</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5505883</p>
+        </div>
+
+        <div class="producto" data-name="Limpiador de Vidrios Windex (650 ml)">
+            <img src="Limpiador de Vidrios Windex (650 ml).jpg"alt="Producto_ 218"><h4>Limpiador de Vidrios Windex (650 ml)</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5501989</p>
+        </div>
+
+        <div class="producto" data-name="Moop Completo">
+            <img src="Moop Completo.jpg"alt="Producto_ 240"><h4>Moop Completo</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5521338</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Fluido Centrico con 12 Rollos">
+            <img src="Papel Higienico Fluido Centrico con 12 Rollos.jpg"alt="Producto_ 253"><h4>Papel Higienico Fluido Centrico con 12 Rollos</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5537989</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Jumbo con 12 Rollos 70016532">
+            <img src="Papel Higienico Jumbo con 12 Rollos 70016532.jpg"alt="Producto_ 254"><h4>Papel Higienico Jumbo con 12 Rollos 70016532</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5541852</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Jumbo con 12 Rollos TJ 12 22A">
+            <img src="Papel Higienico Jumbo con 12 Rollos TJ 12 22A.jpg"alt="Producto_ 255"><h4>Papel Higienico Jumbo con 12 Rollos TJ 12 22A</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540477</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Jumbo con 6 Rollos 70060433">
+            <img src="Papel Higienico Jumbo con 6 Rollos 70060433.jpg"alt="Producto_ 256"><h4>Papel Higienico Jumbo con 6 Rollos 70060433</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540247</p>
+        </div>
+
+        <div class="producto" data-name="Pastilla Aromatizante Wiese">
+            <img src="Pastilla Aromatizante Wiese.jpg"alt="Producto_ 263"><h4>Pastilla Aromatizante Wiese</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5502438</p>
+        </div>
+
+        <div class="producto" data-name="Recogedor de Metal">
+            <img src="Recogedor de Metal.jpg"alt="Producto_ 279"><h4>Recogedor de Metal</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5516098</p>
+        </div>
+
+        <div class="producto" data-name="Repuesto para Moop">
+            <img src="Repuesto para Moop.jpg"alt="Producto_ 281"><h4>Repuesto para Moop</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5513382</p>
+        </div>
+
+        <div class="producto" data-name="Shampoo Líquido Desengrasante de 4 Cartuchos de 1000 ml">
+            <img src="Shampoo Líquido Desengrasante de 4 Cartuchos de 1000 ml.jpg"alt="Producto_ 306"><h4>Shampoo Líquido Desengrasante de 4 Cartuchos de 1000 ml</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540560</p>
+        </div>
+
+        <div class="producto" data-name="Toalla en Rollo para Manos 6 rollos con 160 m">
+            <img src="Toalla en Rollo para Manos 6 rollos con 160 m.jpg"alt="Producto_ 326"><h4>Toalla en Rollo para Manos 6 rollos con 160 m</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5530207</p>
+        </div>
+
+        <div class="producto" data-name="Toalla en Rollo para Manos 6 rollos con 180 m">
+            <img src="Toalla en Rollo para Manos 6 rollos con 180 m.jpg"alt="Producto_ 327"><h4>Toalla en Rollo para Manos 6 rollos con 180 m</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540248</p>
+        </div>
+
+        <div class="producto" data-name="Trapeador">
+            <img src="Trapeador.jpg"alt="Producto_ 328"><h4>Trapeador</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5527082</p>
+        </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

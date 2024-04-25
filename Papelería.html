@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar en Papelería...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+     <div class="container"> <div class="fila">
+
+        <div class="producto" data-name="Bicolor Rojo Azul">
+            <img src="Bicolor Rojo Azul.jpg"alt="Producto_ 38"><h4>Bicolor Rojo Azul</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5529938</p>
+        </div>
+
+        <div class="producto" data-name="Boligrado (Pluma) Punto Mediano Color Azul">
+            <img src="Boligrado (Pluma) Punto Mediano Color Azul.jpg"alt="Producto_ 50"><h4>Boligrado (Pluma) Punto Mediano Color Azul</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530184</p>
+        </div>
+
+        <div class="producto" data-name="Boligrado (Pluma) Punto Mediano Color Negro">
+            <img src="Boligrado (Pluma) Punto Mediano Color Negro.jpg"alt="Producto_ 51"><h4>Boligrado (Pluma) Punto Mediano Color Negro</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530185</p>
+        </div>
+
+        <div class="producto" data-name="Boligrado (Pluma) Punto Mediano Color Rojo">
+            <img src="Boligrado (Pluma) Punto Mediano Color Rojo.jpg"alt="Producto_ 52"><h4>Boligrado (Pluma) Punto Mediano Color Rojo</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530186</p>
+        </div>
+
+        <div class="producto" data-name="Bolsa de Plastico Rollo con 1 kg">
+            <img src="Bolsa de Plastico Rollo con 1 kg.jpg"alt="Producto_ 53"><h4>Bolsa de Plastico Rollo con 1 kg</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5523284</p>
+        </div>
+
+        <div class="producto" data-name="Borrador para Pizarron Blanco">
+            <img src="Borrador para Pizarron Blanco.jpg"alt="Producto_ 54"><h4>Borrador para Pizarron Blanco</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530050</p>
+        </div>
+
+        <div class="producto" data-name="Broche Metak para Gafete">
+            <img src="Broche Metak para Gafete.jpg"alt="Producto_ 60"><h4>Broche Metak para Gafete</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5511448</p>
+        </div>
+
+        <div class="producto" data-name="Broches de Archivo 8 cm">
+            <img src="Broches de Archivo 8 cm.jpg"alt="Producto_ 62"><h4>Broches de Archivo 8 cm</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530037</p>
+        </div>
+
+        <div class="producto" data-name="Cabezal de Impresión HP 727">
+            <img src="Cabezal de Impresión HP 727.jpg"alt="Producto_ 63"><h4>Cabezal de Impresión HP 727</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5532549</p>
+        </div>
+
+        <div class="producto" data-name="Caja de Marcadores para Pizarron con 4 pzas">
+            <img src="Caja de Marcadores para Pizarron con 4 pzas.jpg"alt="Producto_ 65"><h4>Caja de Marcadores para Pizarron con 4 pzas</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5529992</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 0.5 in Arillo Negro">
+            <img src="Carpeta Panoramica Tamaño Carta 0.5 in Arillo Negro.jpg"alt="Producto_ 75"><h4>Carpeta Panoramica Tamaño Carta 0.5 in Arillo Negro</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530167</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 1 in">
+            <img src="Carpeta Panoramica Tamaño Carta 1 in.jpg"alt="Producto_ 76"><h4>Carpeta Panoramica Tamaño Carta 1 in</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530164</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 3 in">
+            <img src="Carpeta Panoramica Tamaño Carta 3 in.jpg"alt="Producto_ 77"><h4>Carpeta Panoramica Tamaño Carta 3 in</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530159</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 4 in Arillo Blanco">
+            <img src="Carpeta Panoramica Tamaño Carta 4 in Arillo Blanco.jpg"alt="Producto_ 78"><h4>Carpeta Panoramica Tamaño Carta 4 in Arillo Blanco</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530170</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Amarillo HP 727">
+            <img src="Cartucho Amarillo HP 727.jpg"alt="Producto_ 80"><h4>Cartucho Amarillo HP 727</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5532547</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian Claro HP 831">
+            <img src="Cartucho Cian Claro HP 831.jpg"alt="Producto_ 81"><h4>Cartucho Cian Claro HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532505</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian HP 727">
+            <img src="Cartucho Cian HP 727.jpg"alt="Producto_ 82"><h4>Cartucho Cian HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532548</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian HP 831A">
+            <img src="Cartucho Cian HP 831A.jpg"alt="Producto_ 83"><h4>Cartucho Cian HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532502</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian Negro HP 831">
+            <img src="Cartucho Cian Negro HP 831.jpg"alt="Producto_ 84"><h4>Cartucho Cian Negro HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532510</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho de Mantenimiento HP 831">
+            <img src="Cartucho de Mantenimiento HP 831.jpg"alt="Producto_ 85"><h4>Cartucho de Mantenimiento HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5533734</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Gris HP 727">
+            <img src="Cartucho Gris HP 727.jpg"alt="Producto_ 87"><h4>Cartucho Gris HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532545</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Latex Amarillo HP 831A">
+            <img src="Cartucho Latex Amarillo HP 831A.jpg"alt="Producto_ 88"><h4>Cartucho Latex Amarillo HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5526757</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Latex Magenta Claro HP 831A">
+            <img src="Cartucho Latex Magenta Claro HP 831A.jpg"alt="Producto_ 89"><h4>Cartucho Latex Magenta Claro HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532504</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Latex Magenta HP 831A">
+            <img src="Cartucho Latex Magenta HP 831A.jpg"alt="Producto_ 90"><h4>Cartucho Latex Magenta HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5526756</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Magenta Amarillo Claro HP 831">
+            <img src="Cartucho Magenta Amarillo Claro HP 831.jpg"alt="Producto_ 91"><h4>Cartucho Magenta Amarillo Claro HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532512</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Magenta Claro Cian HP 831">
+            <img src="Cartucho Magenta Claro Cian HP 831.jpg"alt="Producto_ 92"><h4>Cartucho Magenta Claro Cian HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532511</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Magenta HP 727">
+            <img src="Cartucho Magenta HP 727.jpg"alt="Producto_ 93"><h4>Cartucho Magenta HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532546</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Negro HP 727">
+            <img src="Cartucho Negro HP 727.jpg"alt="Producto_ 94"><h4>Cartucho Negro HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532543</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Negro HP 831A">
+            <img src="Cartucho Negro HP 831A.jpg"alt="Producto_ 95"><h4>Cartucho Negro HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532503</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Negro Mate HP 727">
+            <img src="Cartucho Negro Mate HP 727.jpg"alt="Producto_ 96"><h4>Cartucho Negro Mate HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532544</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Optimizador de Latex HP 831">
+            <img src="Cartucho Optimizador de Latex HP 831.jpg"alt="Producto_ 97"><h4>Cartucho Optimizador de Latex HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532509</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Optimizador HP 831">
+            <img src="Cartucho Optimizador HP 831.jpg"alt="Producto_ 98"><h4>Cartucho Optimizador HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532508</p>
+        </div>
+
+        <div class="producto" data-name="Cartulina Opalina Tamaño Carta con 100 Hojas">
+            <img src="Cartulina Opalina Tamaño Carta con 100 Hojas.jpg"alt="Producto_ 101"><h4>Cartulina Opalina Tamaño Carta con 100 Hojas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530160</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Doble Cara 12 mm x 50 m">
+            <img src="Cinta Doble Cara 12 mm x 50 m.jpg"alt="Producto_ 125"><h4>Cinta Doble Cara 12 mm x 50 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530061</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Magica 12 mm x 33 m">
+            <img src="Cinta Magica 12 mm x 33 m.jpg"alt="Producto_ 126"><h4>Cinta Magica 12 mm x 33 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529975</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Magica 24 mm x 65 m">
+            <img src="Cinta Magica 24 mm x 65 m.jpg"alt="Producto_ 127"><h4>Cinta Magica 24 mm x 65 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530058</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Testigo para Autoclave">
+            <img src="Cinta Testigo para Autoclave.jpg"alt="Producto_ 129"><h4>Cinta Testigo para Autoclave</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5506675</p>
+        </div>
+
+        <div class="producto" data-name="Clip Gotico con 100 pzas">
+            <img src="Clip Gotico con 100 pzas.jpg"alt="Producto_ 130"><h4>Clip Gotico con 100 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529979</p>
+        </div>
+
+        <div class="producto" data-name="Clip Mariposa No. 1 con 12 pzas">
+            <img src="Clip Mariposa No. 1 con 12 pzas.jpg"alt="Producto_ 131"><h4>Clip Mariposa No. 1 con 12 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530062</p>
+        </div>
+
+        <div class="producto" data-name="Clip Mariposa No. 2 con 50 pzas">
+            <img src="Clip Mariposa No. 2 con 50 pzas.jpg"alt="Producto_ 132"><h4>Clip Mariposa No. 2 con 50 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530063</p>
+        </div>
+
+        <div class="producto" data-name="Cono de Papel con 250 pzas">
+            <img src="Cono de Papel con 250 pzas.jpg"alt="Producto_ 135"><h4>Cono de Papel con 250 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5531587</p>
+        </div>
+
+        <div class="producto" data-name="Cuaderno (Libreta) de Cuadro Grande">
+            <img src="Cuaderno (Libreta) de Cuadro Grande.jpg"alt="Producto_ 137"><h4>Cuaderno (Libreta) de Cuadro Grande</h4><p>Papeleria</p>
+            <p>Cuadernos, Libretas y Carpetas</p>
+            <p>SKU:5530010</p>
+        </div>
+
+        <div class="producto" data-name="Cuaderno (Libreta) de Rayas">
+            <img src="Cuaderno (Libreta) de Rayas.jpg"alt="Producto_ 138"><h4>Cuaderno (Libreta) de Rayas</h4><p>Papeleria</p>
+            <p>Cuadernos, Libretas y Carpetas</p>
+            <p>SKU:5530064</p>
+        </div>
+
+        <div class="producto" data-name="Desengrapadora">
+            <img src="Desengrapadora.jpg"alt="Producto_ 142"><h4>Desengrapadora</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530065</p>
+        </div>
+
+        <div class="producto" data-name="Engrapadora de Golpe">
+            <img src="Engrapadora de Golpe.jpg"alt="Producto_ 144"><h4>Engrapadora de Golpe</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529981</p>
+        </div>
+
+        <div class="producto" data-name="Etiqueta Color Rojo 24 mm x 76 m">
+            <img src="Etiqueta Color Rojo 24 mm x 76 m.jpg"alt="Producto_ 151"><h4>Etiqueta Color Rojo 24 mm x 76 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529852</p>
+        </div>
+
+        <div class="producto" data-name="Florete Rayado Forma Francesa">
+            <img src="Florete Rayado Forma Francesa.jpg"alt="Producto_ 158"><h4>Florete Rayado Forma Francesa</h4><p>Papeleria</p>
+            <p>Cuadernos, Libretas y Carpetas</p>
+            <p>SKU:5530118</p>
+        </div>
+
+        <div class="producto" data-name="Goma Blanca para Lapiz y Color">
+            <img src="Goma Blanca para Lapiz y Color.jpg"alt="Producto_ 164"><h4>Goma Blanca para Lapiz y Color</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530188</p>
+        </div>
+
+        <div class="producto" data-name="Grapa Estandar con 5040 pzas">
+            <img src="Grapa Estandar con 5040 pzas.jpg"alt="Producto_ 166"><h4>Grapa Estandar con 5040 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529936</p>
+        </div>
+
+        <div class="producto" data-name="Gusano para Engargolar Negro 1 1/4 in">
+            <img src="Gusano para Engargolar Negro 1 1 4 in.jpg"alt="Producto_ 191"><h4>Gusano para Engargolar Negro 1 1/4 in</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530197</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Amarilla Fluoresente Tamaño Carta con 100 pzas">
+            <img src="Hoja Amarilla Fluoresente Tamaño Carta con 100 pzas.jpg"alt="Producto_ 195"><h4>Hoja Amarilla Fluoresente Tamaño Carta con 100 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530194</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Doble Carta con 1000 pzas">
+            <img src="Hoja Doble Carta con 1000 pzas.jpg"alt="Producto_ 196"><h4>Hoja Doble Carta con 1000 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530141</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Roja Tamaño Carta con 100 pzas">
+            <img src="Hoja Roja Tamaño Carta con 100 pzas.jpg"alt="Producto_ 197"><h4>Hoja Roja Tamaño Carta con 100 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530066</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Tamaño Carta con Pleca a media hoja con 250 pzas">
+            <img src="Hoja Tamaño Carta con Pleca a media hoja con 250 pzas.jpg"alt="Producto_ 198"><h4>Hoja Tamaño Carta con Pleca a media hoja con 250 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5506000</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Verde Tamaño Carta con 100 pzas">
+            <img src="Hoja Verde Tamaño Carta con 100 pzas.jpg"alt="Producto_ 199"><h4>Hoja Verde Tamaño Carta con 100 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530202</p>
+        </div>
+
+        <div class="producto" data-name="Lapiz Adhesivo con 22 gr">
+            <img src="Lapiz Adhesivo con 22 gr.jpg"alt="Producto_ 210"><h4>Lapiz Adhesivo con 22 gr</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529937</p>
+        </div>
+
+        <div class="producto" data-name="Lapiz No. 2 HB">
+            <img src="Lapiz No. 2 HB.jpg"alt="Producto_ 211"><h4>Lapiz No. 2 HB</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530027</p>
+        </div>
+
+        <div class="producto" data-name="Liquido Limpiador para Pintarron con 237 ml">
+            <img src="Liquido Limpiador para Pintarron con 237 ml.jpg"alt="Producto_ 219"><h4>Liquido Limpiador para Pintarron con 237 ml</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530005</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Color Blanco">
+            <img src="Marcador Color Blanco.jpg"alt="Producto_ 226"><h4>Marcador Color Blanco</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5529391</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Grueso Permanente Azul (Sharpie)">
+            <img src="Marcador Grueso Permanente Azul (Sharpie).jpg"alt="Producto_ 227"><h4>Marcador Grueso Permanente Azul (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530073</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Grueso Permanente Negro (Sharpie)">
+            <img src="Marcador Grueso Permanente Negro (Sharpie).jpg"alt="Producto_ 228"><h4>Marcador Grueso Permanente Negro (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5529991</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Grueso Rojo">
+            <img src="Marcador Grueso Rojo.jpg"alt="Producto_ 229"><h4>Marcador Grueso Rojo</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530000</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Punto Fino Negro (Sharpie)">
+            <img src="Marcador Punto Fino Negro (Sharpie).jpg"alt="Producto_ 230"><h4>Marcador Punto Fino Negro (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530007</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Punto Fino Verde (Sharpie)">
+            <img src="Marcador Punto Fino Verde (Sharpie).jpg"alt="Producto_ 231"><h4>Marcador Punto Fino Verde (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530012</p>
+        </div>
+
+        <div class="producto" data-name="Marcatextos Amarillo">
+            <img src="Marcatextos Amarillo.jpg"alt="Producto_ 232"><h4>Marcatextos Amarillo</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5529939</p>
+        </div>
+
+        <div class="producto" data-name="Mica Termica Tamaño Carta">
+            <img src="Mica Termica Tamaño Carta.jpg"alt="Producto_ 239"><h4>Mica Termica Tamaño Carta</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529949</p>
+        </div>
+
+        <div class="producto" data-name="Notas Autoadheribles Raya Neon 101 x 101 mm">
+            <img src="Notas Autoadheribles Raya Neon 101 x 101 mm.jpg"alt="Producto_ 242"><h4>Notas Autoadheribles Raya Neon 101 x 101 mm</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530190</p>
+        </div>
+
+        <div class="producto" data-name="Papel Blanco Blancura 89% Caja con 5000 hojas">
+            <img src="Papel Blanco Blancura 89% Caja con 5000 hojas.jpg"alt="Producto_ 252"><h4>Papel Blanco Blancura 89% Caja con 5000 hojas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530157</p>
+        </div>
+
+        <div class="producto" data-name="Papel Tamaño Carta Caja con 5000 hojas">
+            <img src="Papel Tamaño Carta Caja con 5000 hojas.jpg"alt="Producto_ 257"><h4>Papel Tamaño Carta Caja con 5000 hojas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530047</p>
+        </div>
+
+        <div class="producto" data-name="Pasta de Plasta Tamaño Carta Color Negro">
+            <img src="Pasta de Plasta Tamaño Carta Color Negro.jpg"alt="Producto_ 260"><h4>Pasta de Plasta Tamaño Carta Color Negro</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5506023</p>
+        </div>
+
+        <div class="producto" data-name="Perforadora Triple">
+            <img src="Perforadora Triple.jpg"alt="Producto_ 265"><h4>Perforadora Triple</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530042</p>
+        </div>
+
+        <div class="producto" data-name="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 3 mm de Espesor">
+            <img src="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 3 mm de Espesor.jpg"alt="Producto_ 269"><h4>Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 3 mm de Espesor</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:4056931</p>
+        </div>
+
+        <div class="producto" data-name="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 6 mm de Espesor">
+            <img src="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 6 mm de Espesor.jpg"alt="Producto_ 270"><h4>Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 6 mm de Espesor</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:4056625</p>
+        </div>
+
+        <div class="producto" data-name="Protector de Hoja Tamaño Carta Caja con 100 pzas">
+            <img src="Protector de Hoja Tamaño Carta Caja con 100 pzas.jpg"alt="Producto_ 277"><h4>Protector de Hoja Tamaño Carta Caja con 100 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529971</p>
+        </div>
+
+        <div class="producto" data-name="Regla Escolar">
+            <img src="Regla Escolar.jpg"alt="Producto_ 280"><h4>Regla Escolar</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530034</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de 1500 Etiquetas De 51 X 25 mm (2 x 1 in) Color Verde">
+            <img src="Rollo de 1500 Etiquetas De 51 X 25 mm (2 x 1 in) Color Verde.jpg"alt="Producto_ 288"><h4>Rollo de 1500 Etiquetas De 51 X 25 mm (2 x 1 in) Color Verde</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5505945</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Papel Aplicación Premasking Transfer">
+            <img src="Rollo de Papel Aplicación Premasking Transfer.jpg"alt="Producto_ 289"><h4>Rollo de Papel Aplicación Premasking Transfer</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5524099</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Papel Bond de 91 cm X 50 m">
+            <img src="Rollo de Papel Bond de 91 cm X 50 m.jpg"alt="Producto_ 290"><h4>Rollo de Papel Bond de 91 cm X 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5521001</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Microperforado de 1.52 x 50 m">
+            <img src="Rollo de Vinil Autoadherible Microperforado de 1.52 x 50 m.jpg"alt="Producto_ 293"><h4>Rollo de Vinil Autoadherible Microperforado de 1.52 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5525381</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Amarillo de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Amarillo de 24 in x 45.42 m.jpg"alt="Producto_ 294"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Amarillo de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524028</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Azul de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Azul de 24 in x 45.42 m.jpg"alt="Producto_ 295"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Azul de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524097</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Blanco de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Blanco de 24 in x 45.42 m.jpg"alt="Producto_ 296"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Blanco de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5523989</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Negro de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Negro de 24 in x 45.42 m.jpg"alt="Producto_ 297"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Negro de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524120</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Rojo de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Rojo de 24 in x 45.42 m.jpg"alt="Producto_ 298"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Rojo de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524098</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Verde de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Verde de 24 in x 45.42 m.jpg"alt="Producto_ 299"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Verde de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524122</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Transparente 1.37 x 50 m">
+            <img src="Rollo de Vinil Autoadherible Transparente 1.37 x 50 m.jpg"alt="Producto_ 300"><h4>Rollo de Vinil Autoadherible Transparente 1.37 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5533539</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Microperforado 1.52 x 50 m">
+            <img src="Rollo de Vinil Microperforado 1.52 x 50 m.jpg"alt="Producto_ 301"><h4>Rollo de Vinil Microperforado 1.52 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5530755</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil para Impresion Blanco Autodherible de 1.52 x 50 m">
+            <img src="Rollo de Vinil para Impresion Blanco Autodherible de 1.52 x 50 m.jpg"alt="Producto_ 302"><h4>Rollo de Vinil para Impresion Blanco Autodherible de 1.52 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5513893</p>
+        </div>
+
+        <div class="producto" data-name="Sacapuntas Escolar">
+            <img src="Sacapuntas Escolar.jpg"alt="Producto_ 303"><h4>Sacapuntas Escolar</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530035</p>
+        </div>
+
+        <div class="producto" data-name="Tabla Sujetapapel Tamaño Carta">
+            <img src="Tabla Sujetapapel Tamaño Carta.jpg"alt="Producto_ 316"><h4>Tabla Sujetapapel Tamaño Carta</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530056</p>
+        </div>
+
+        <div class="producto" data-name="Tarjeta PVC Inteligente Tipo Mifar">
+            <img src="Tarjeta PVC Inteligente Tipo Mifar.jpg"alt="Producto_ 322"><h4>Tarjeta PVC Inteligente Tipo Mifar</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5526573</p>
+        </div>
+
+        <div class="producto" data-name="Tijera Universal">
+            <img src="Tijera Universal.jpg"alt="Producto_ 324"><h4>Tijera Universal</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530046</p>
+        </div>
+
+        <div class="producto" data-name="Tinta para Sellos Negros">
+            <img src="Tinta para Sellos Negros.jpg"alt="Producto_ 325"><h4>Tinta para Sellos Negros</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529964</p>
+        </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

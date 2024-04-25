@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Almacén PyR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #023C40;
+            color: white;
+            padding: 18px 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-izquierdo,
+        .logo-derecho {
+            max-width: 130px;
+            height: auto;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        nav {
+            background-color: #023C40;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #FFFFFF;
+            padding: 5px 3.5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+       #buscador {
+           margin: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #buscador input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+
+        #buscador input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+      }
+
+        #nota {
+            font-style: italic;
+            color: gray;
+            margin: 10px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px;
+            padding: 10px;
+            min-width: 180px; 
+            text-align: center;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .producto h4,
+        .producto p {
+            margin: 10px;
+        }
+
+        footer {
+            background-color: #023C40;
+            color: white;
+            text-align: center;
+            padding: 0.5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Nueva regla para contenedor de fila */
+        .fila {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Ajustes adicionales para los productos */
+        .fila .producto {
+            margin: 10px;
+            flex: 0 0 calc(25% - 20px); /* Ajustar según el número de productos por fila */
+        }
+
+        /* Media query para dispositivos móviles */
+        @media (max-width: 768px) {
+            .logo-izquierdo,
+            .logo-derecho {
+                max-width: 80px;
+            }
+
+            nav ul li {
+                margin-right: 5px;
+            }
+
+            nav ul li a {
+                padding: 3px;
+            }
+
+            #buscador {
+                margin: 10px;
+            }
+
+            #buscador input[type="text"] {
+                width: 150px;
+            }
+
+            .producto {
+                min-width: 80px; 
+            }
+            
+
+            .fila .producto {
+                flex: 0 0 calc(20% - 20px);
+            }
+             body {
+        font-size: 10px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+        }
+              header h1 a {
+            color: white; /* Cambiar color del texto */
+            text-decoration: none; /* Eliminar subrayado */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
+        <h1><a href="Index.html">Almacén Partes y Refacciones</a></h1>
+        <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Limpieza.html">Limpieza</a></li>
+            <li><a href="EPP.html">EPP</a></li>
+            <li><a href="Papelería.html">Papelería</a></li>
+            <li><a href="Solventes.html">Solventes</a></li>
+            <li><a href="Químicos.html">Químicos</a></li>
+            <li><a href="Uniformes.html">Uniformes</a></li>
+        </ul>
+    </nav>
+
+    <div id="buscador">
+        <input type="text" id="searchInput" onkeyup="searchList()" placeholder="Buscar productos...">
+        <div id="nota">*No utilizar acentos en la búsqueda.</div>
+    </div>
+    <div class="container"> <div class="fila">
+        <div class="producto" data-name="Aceite (39433735 Ingersoll Rand) Litro">
+            <img src="Aceite (39433735 Ingersoll Rand) Litro.jpg"alt="Producto_ 1"><h4>Aceite (39433735 Ingersoll Rand) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057265</p>
+        </div>
+
+        <div class="producto" data-name="Aceite (Mobil Delvac 1340) Litro">
+            <img src="Aceite (Mobil Delvac 1340) Litro.jpg"alt="Producto_ 2"><h4>Aceite (Mobil Delvac 1340) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057096</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Dielectrico de Aerosol 400 ml">
+            <img src="Aceite Dielectrico de Aerosol 400 ml.jpg"alt="Producto_ 3"><h4>Aceite Dielectrico de Aerosol 400 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057464</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Hidraulico (Mobil DTE 26) Litro">
+            <img src="Aceite Hidraulico (Mobil DTE 26) Litro.jpg"alt="Producto_ 4"><h4>Aceite Hidraulico (Mobil DTE 26) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057377</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil DTE 242) Litro">
+            <img src="Aceite Lubricante (Mobil DTE 242) Litro.jpg"alt="Producto_ 5"><h4>Aceite Lubricante (Mobil DTE 242) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4136419</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Almasol 680) Litro">
+            <img src="Aceite Lubricante (Almasol 680) Litro.jpg"alt="Producto_ 6"><h4>Aceite Lubricante (Almasol 680) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057481</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Duolec 1605) Litro">
+            <img src="Aceite Lubricante (Duolec 1605) Litro.jpg"alt="Producto_ 7"><h4>Aceite Lubricante (Duolec 1605) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057526</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Dte Oil Heavy Medium) con 208 Litros">
+            <img src="Aceite Lubricante (Mobil Dte Oil Heavy Medium) con 208 Litros.jpg"alt="Producto_ 8"><h4>Aceite Lubricante (Mobil Dte Oil Heavy Medium) con 208 Litros</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056368</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Dte Oil Light) con 208 Litros">
+            <img src="Aceite Lubricante (Mobil Dte Oil Light) con 208 Litros.jpg"alt="Producto_ 9"><h4>Aceite Lubricante (Mobil Dte Oil Light) con 208 Litros</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056505</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Gear 600xp 200) Litro">
+            <img src="Aceite Lubricante (Mobil Gear 600xp 200) Litro.jpg"alt="Producto_ 10"><h4>Aceite Lubricante (Mobil Gear 600xp 200) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4018364</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Glygoyle 30) Litro">
+            <img src="Aceite Lubricante (Mobil Glygoyle 30) Litro.jpg"alt="Producto_ 11"><h4>Aceite Lubricante (Mobil Glygoyle 30) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056384</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil Glygoyle 460) Litro">
+            <img src="Aceite Lubricante (Mobil Glygoyle 460) Litro.jpg"alt="Producto_ 12"><h4>Aceite Lubricante (Mobil Glygoyle 460) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057131</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Mobil SHC 634) Litro">
+            <img src="Aceite Lubricante (Mobil SHC 634) Litro.jpg"alt="Producto_ 13"><h4>Aceite Lubricante (Mobil SHC 634) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056964</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante (Reflo 68) Litro">
+            <img src="Aceite Lubricante (Reflo 68) Litro.jpg"alt="Producto_ 14"><h4>Aceite Lubricante (Reflo 68) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4244153</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante 4150 h1 Quinplex con 208 Litros">
+            <img src="Aceite Lubricante 4150 h1 Quinplex con 208 Litros.jpg"alt="Producto_ 15"><h4>Aceite Lubricante 4150 h1 Quinplex con 208 Litros</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4269069</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante HEUFT Litro">
+            <img src="Aceite Lubricante HEUFT Litro.jpg"alt="Producto_ 16"><h4>Aceite Lubricante HEUFT Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057523</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Lubricante WD-40 de 3.78 L">
+            <img src="Aceite Lubricante WD-40 de 3.78 L.jpg"alt="Producto_ 17"><h4>Aceite Lubricante WD-40 de 3.78 L</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057151</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Mobil (DTE 27) Litro">
+            <img src="Aceite Mobil (DTE 27) Litro.jpg"alt="Producto_ 18"><h4>Aceite Mobil (DTE 27) Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057095</p>
+        </div>
+
+        <div class="producto" data-name="Aceite Superla White Oil Litro">
+            <img src="Aceite Superla White Oil Litro.jpg"alt="Producto_ 19"><h4>Aceite Superla White Oil Litro</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:5005030</p>
+        </div>
+
+        <div class="producto" data-name="Adhesivo Permatex (Henkel) de 250 ml">
+            <img src="Adhesivo Permatex (Henkel) de 250 ml.jpg"alt="Producto_ 20"><h4>Adhesivo Permatex (Henkel) de 250 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053949</p>
+        </div>
+
+        <div class="producto" data-name="Aflojatodo Key Litro">
+            <img src="Aflojatodo Key Litro.jpg"alt="Producto_ 21"><h4>Aflojatodo Key Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057463</p>
+        </div>
+
+        <div class="producto" data-name="Alcohol etílico 70° G.L. Desnaturalizado Litro">
+            <img src="Alcohol etílico 70° G.L. Desnaturalizado Litro.jpg"alt="Producto_ 22"><h4>Alcohol etílico 70° G.L. Desnaturalizado Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5523881</p>
+        </div>
+
+        <div class="producto" data-name="Alcohol Etílico al 96% para Laboratorio Litro">
+            <img src="Alcohol Etílico al 96% para Laboratorio Litro.jpg"alt="Producto_ 23"><h4>Alcohol Etílico al 96% para Laboratorio Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053948</p>
+        </div>
+
+        <div class="producto" data-name="Alocohol Isopropilico en aerosol 280 g">
+            <img src="Alocohol Isopropilico en aerosol 280 g.jpg"alt="Producto_ 24"><h4>Alocohol Isopropilico en aerosol 280 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057201</p>
+        </div>
+
+        <div class="producto" data-name="Antebrazo De Carnaza Con Ojillo De Metal">
+            <img src="Antebrazo De Carnaza Con Ojillo De Metal.jpg"alt="Producto_ 25"><h4>Antebrazo De Carnaza Con Ojillo De Metal</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506417</p>
+        </div>
+
+        <div class="producto" data-name="Antiderrapante Cosmético para Bandas 250 g">
+            <img src="Antiderrapante Cosmético para Bandas 250 g.jpg"alt="Producto_ 26"><h4>Antiderrapante Cosmético para Bandas 250 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056344</p>
+        </div>
+
+        <div class="producto" data-name="Antiespumante Hach Litro">
+            <img src="Antiespumante Hach Litro.jpg"alt="Producto_ 27"><h4>Antiespumante Hach Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5003550</p>
+        </div>
+
+        <div class="producto" data-name="Arrow Kg">
+            <img src="Arrow Kg.jpg"alt="Producto_ 28"><h4>Arrow Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000848</p>
+        </div>
+
+        <div class="producto" data-name="Atomizadores de Plastico 500 ml">
+            <img src="Atomizadores de Plastico 500 ml.jpg"alt="Producto_ 29"><h4>Atomizadores de Plastico 500 ml</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5521403</p>
+        </div>
+
+        <div class="producto" data-name="Barbiquejo de Elastico para Casco de Seguridad">
+            <img src="Barbiquejo de Elastico para Casco de Seguridad.jpg"alt="Producto_ 30"><h4>Barbiquejo de Elastico para Casco de Seguridad</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5524482</p>
+        </div>
+
+        <div class="producto" data-name="Barniz Aislante Eléctrico Litro">
+            <img src="Barniz Aislante Eléctrico Litro.jpg"alt="Producto_ 31"><h4>Barniz Aislante Eléctrico Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057853</p>
+        </div>
+
+        <div class="producto" data-name="Barniz Therm Litro">
+            <img src="Barniz Therm Litro.jpg"alt="Producto_ 32"><h4>Barniz Therm Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057858</p>
+        </div>
+
+        <div class="producto" data-name="Base de Bloqueo Grande para Valvulas Universales">
+            <img src="Base de Bloqueo Grande para Valvulas Universales.jpg"alt="Producto_ 33"><h4>Base de Bloqueo Grande para Valvulas Universales</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530750</p>
+        </div>
+
+        <div class="producto" data-name="Bata de Laboratorio para Hombre">
+            <img src="Bata de Laboratorio para Hombre.jpg"alt="Producto_ 34"><h4>Bata de Laboratorio para Hombre</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539468</p>
+        </div>
+
+        <div class="producto" data-name="Bata de Laboratorio para Mujer">
+            <img src="Bata de Laboratorio para Mujer.jpg"alt="Producto_ 35"><h4>Bata de Laboratorio para Mujer</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539469</p>
+        </div>
+
+        <div class="producto" data-name="Bengala Led">
+            <img src="Bengala Led.jpg"alt="Producto_ 36"><h4>Bengala Led</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524397</p>
+        </div>
+
+        <div class="producto" data-name="Bicarbonato de Sodio G.I. Kg">
+            <img src="Bicarbonato de Sodio G.I. Kg.jpg"alt="Producto_ 37"><h4>Bicarbonato de Sodio G.I. Kg</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5000527</p>
+        </div>
+
+        <div class="producto" data-name="Bicolor Rojo Azul">
+            <img src="Bicolor Rojo Azul.jpg"alt="Producto_ 38"><h4>Bicolor Rojo Azul</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5529938</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo Ajustable para Valvulas de Compuerta">
+            <img src="Bloqueo Ajustable para Valvulas de Compuerta.jpg"alt="Producto_ 39"><h4>Bloqueo Ajustable para Valvulas de Compuerta</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524011</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo de Cable para Cualquier Proposito">
+            <img src="Bloqueo de Cable para Cualquier Proposito.jpg"alt="Producto_ 40"><h4>Bloqueo de Cable para Cualquier Proposito</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530733</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo de Valvula Universal con Cable de Mylon">
+            <img src="Bloqueo de Valvula Universal con Cable de Mylon.jpg"alt="Producto_ 41"><h4>Bloqueo de Valvula Universal con Cable de Mylon</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524006</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo Grande Prinzing para Valvulas de Bola">
+            <img src="Bloqueo Grande Prinzing para Valvulas de Bola.jpg"alt="Producto_ 42"><h4>Bloqueo Grande Prinzing para Valvulas de Bola</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530748</p>
+        </div>
+
+        <div class="producto" data-name="Bloqueo Prinzing para Valvulas de Bola">
+            <img src="Bloqueo Prinzing para Valvulas de Bola.jpg"alt="Producto_ 43"><h4>Bloqueo Prinzing para Valvulas de Bola</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5530749</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Corta Azul Cielo">
+            <img src="Blusa Manga Corta Azul Cielo.jpg"alt="Producto_ 44"><h4>Blusa Manga Corta Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539444</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Corta Azul Rey">
+            <img src="Blusa Manga Corta Azul Rey.jpg"alt="Producto_ 45"><h4>Blusa Manga Corta Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539420</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Larga Azul Cielo">
+            <img src="Blusa Manga Larga Azul Cielo.jpg"alt="Producto_ 46"><h4>Blusa Manga Larga Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539445</p>
+        </div>
+
+        <div class="producto" data-name="Blusa Manga Larga Azul Rey">
+            <img src="Blusa Manga Larga Azul Rey.jpg"alt="Producto_ 47"><h4>Blusa Manga Larga Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539421</p>
+        </div>
+
+        <div class="producto" data-name="Boligrado (Pluma) Punto Mediano Color Azul">
+            <img src="Boligrado (Pluma) Punto Mediano Color Azul.jpg"alt="Producto_ 48"><h4>Boligrado (Pluma) Punto Mediano Color Azul</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530184</p>
+        </div>
+
+        <div class="producto" data-name="Boligrado (Pluma) Punto Mediano Color Negro">
+            <img src="Boligrado (Pluma) Punto Mediano Color Negro.jpg"alt="Producto_ 49"><h4>Boligrado (Pluma) Punto Mediano Color Negro</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530185</p>
+        </div>
+
+        <div class="producto" data-name="Boligrado (Pluma) Punto Mediano Color Rojo">
+            <img src="Boligrado (Pluma) Punto Mediano Color Rojo.jpg"alt="Producto_ 50"><h4>Boligrado (Pluma) Punto Mediano Color Rojo</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530186</p>
+        </div>
+
+        <div class="producto" data-name="Bolsa de Plastico Rollo con 1 kg">
+            <img src="Bolsa de Plastico Rollo con 1 kg.jpg"alt="Producto_ 51"><h4>Bolsa de Plastico Rollo con 1 kg</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5523284</p>
+        </div>
+
+        <div class="producto" data-name="Borrador para Pizarron Blanco">
+            <img src="Borrador para Pizarron Blanco.jpg"alt="Producto_ 52"><h4>Borrador para Pizarron Blanco</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530050</p>
+        </div>
+       <div class="producto" data-name="Bota de Hule con Casquillo">
+            <img src="Bota de Hule con Casquillo.jpg" alt="Producto 53">
+            <h4>Bota de Hule con Casquillo</h4>
+            <p>EPP</p>   <p>Calzado</p>
+           <script>
+    function cambiarSKU0() {
+      var select = document.getElementById("talla0");
+      var SKU0 = document.getElementById("SKU0");
+      
+      if (select.value === "26") {
+        SKU0.innerHTML = "5506389";
+      } else if (select.value === "27") {
+        SKU0.innerHTML = "5506390";  
+      } else if (select.value === "28") {
+        SKU0.innerHTML = "5506391";
+      } else if (select.value === "29") {
+        SKU0.innerHTML = "5506392";
+      } else if (select.value === "30") {
+        SKU0.innerHTML = "5506431";
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla0">Talla:</label>
+  <select id="talla0" onchange="cambiarSKU0()">
+    <option value="26">26</option>
+    <option value="27">27</option>
+    <option value="28">28</option>
+    <option value="29">29</option>
+    <option value="30">30</option>
+
+  </select>
+  <p>SKU: <span id="SKU0">5506389</span></p>
+     
+    </div>
+<div class="producto" data-name="Botas Procliff">
+            <img src="Botas Procliff.jpg" alt="Producto 54">
+            <h4>Proximamente Botas Procliff </h4>
+            <p>EPP</p>   <p>Calzado</p>
+           <script>
+    function cambiarSKU1() {
+      var select = document.getElementById("talla1");
+      var SKU1 = document.getElementById("SKU1");
+      
+      if (select.value === "22") {
+        SKU1.innerHTML = "5542030";
+      } else if (select.value === "23") {
+        SKU1.innerHTML = "5542029";  
+      } else if (select.value === "24") {
+        SKU1.innerHTML = "5542028";
+      } else if (select.value === "25") {
+        SKU1.innerHTML = "5542027";
+      } else if (select.value === "26") {
+        SKU1.innerHTML = "5542026";
+      } else if (select.value === "27") {
+        SKU1.innerHTML = "5542025";
+      } else if (select.value === "28") {
+        SKU1.innerHTML = "5542024";
+      } else if (select.value === "29") {
+        SKU1.innerHTML = "5542023";
+      } else if (select.value === "30") {
+        SKU1.innerHTML = "5542022";
+      } else if (select.value === "31") {
+        SKU1.innerHTML = "5542021";
+      } else if (select.value === "32") {
+        SKU1.innerHTML = "5542020";
+           
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla1">Talla:</label>
+  <select id="talla1" onchange="cambiarSKU1()">
+    <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+    <option value="25">25</option>
+    <option value="26">26</option>
+    <option value="27">27</option>
+    <option value="28">28</option>
+    <option value="29">29</option>
+    <option value="30">30</option>
+    <option value="31">31</option>
+    <option value="32">32</option>
+  </select>
+  <p>SKU: <span id="SKU1">5542030</span></p>
+     
+    </div>
+        <div class="producto" data-name="Botas Rhino">
+            <img src="Botas Rhino.jpg" alt="Producto 55">
+            <h4>Botas Rhino </h4>
+            <p>EPP</p>    <p>Calzado</p>
+             <script>
+    function cambiarSKU2() {
+      var select = document.getElementById("talla2");
+      var SKU2 = document.getElementById("SKU2");
+      
+      if (select.value === "23") {
+        SKU2.innerHTML = "5530796";
+      } else if (select.value === "23.5") {
+        SKU2.innerHTML = "5530797";
+      } else if (select.value === "24") {
+        SKU2.innerHTML = "5530798";
+      } else if (select.value === "24.5") {
+        SKU2.innerHTML = "5530799";
+      } else if (select.value === "25") {
+        SKU2.innerHTML = "5530800";
+      } else if (select.value === "25.5") {
+        SKU2.innerHTML = "5530801";
+      } else if (select.value === "26") {
+        SKU2.innerHTML = "5530802";
+      } else if (select.value === "26.5") {
+        SKU2.innerHTML = "5530803";
+        } else if (select.value === "27") {
+        SKU2.innerHTML = "5530804";
+      } else if (select.value === "27.5") {
+        SKU2.innerHTML = "5530805";
+      } else if (select.value === "28") {
+        SKU2.innerHTML = "5530806";
+      } else if (select.value === "28.5") {
+        SKU2.innerHTML = "5530807";
+      } else if (select.value === "29") {
+        SKU2.innerHTML = "5530808";
+      } else if (select.value === "29.5") {
+        SKU2.innerHTML = "5530809";
+      } else if (select.value === "30") {
+        SKU2.innerHTML = "5530810";  
+      } else if (select.value === "31.5") {
+        SKU2.innerHTML = "5530811";
+      } else if (select.value === "32") {
+        SKU2.innerHTML = "5530812";
+           
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla2">Talla:</label>
+  <select id="talla2" onchange="cambiarSKU2()">
+    <option value="23">23</option>
+    <option value="23.5">23.5</option>
+    <option value="24">24</option>
+    <option value="24.5">24.5</option>   
+    <option value="25">25</option>
+    <option value="25.5">25.5</option>  
+    <option value="26">26</option>
+    <option value="26.5">26.5</option>
+    <option value="27">27</option>
+    <option value="27.5">27.5</option>
+    <option value="28">28</option>
+    <option value="28.5">28.5</option>
+    <option value="29">29</option>  
+    <option value="29.5">29.5</option>
+    <option value="30">30</option>
+    <option value="31.5">31.5</option>
+    <option value="32">32</option>
+  </select>
+  <p>SKU: <span id="SKU2">5530796</span></p>
+        </div>
+
+        <div class="producto" data-name="Brocha (Pinceleta) de 2 in">
+            <img src="Brocha (Pinceleta) de 2 in.jpg"alt="Producto_ 56"><h4>Brocha (Pinceleta) de 2 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:4187859</p>
+        </div>
+
+        <div class="producto" data-name="Brocha (Pinceleta) de 4 in">
+            <img src="Brocha (Pinceleta) de 4 in.jpg"alt="Producto_ 57"><h4>Brocha (Pinceleta) de 4 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:4014690</p>
+        </div>
+
+        <div class="producto" data-name="Broche Metak para Gafete">
+            <img src="Broche Metak para Gafete.jpg"alt="Producto_ 58"><h4>Broche Metak para Gafete</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5511448</p>
+        </div>
+
+        <div class="producto" data-name="Broche para Bloqueo Grupal 1.5 in">
+            <img src="Broche para Bloqueo Grupal 1.5 in.jpg"alt="Producto_ 59"><h4>Broche para Bloqueo Grupal 1.5 in</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:4243629</p>
+        </div>
+
+        <div class="producto" data-name="Broches de Archivo 8 cm">
+            <img src="Broches de Archivo 8 cm.jpg"alt="Producto_ 60"><h4>Broches de Archivo 8 cm</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530037</p>
+        </div>
+
+        <div class="producto" data-name="Cabezal de Impresión HP 727">
+            <img src="Cabezal de Impresión HP 727.jpg"alt="Producto_ 61"><h4>Cabezal de Impresión HP 727</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5532549</p>
+        </div>
+
+        <div class="producto" data-name="Cadena Amarilla Plastica 3 in">
+            <img src="Cadena Amarilla Plastica 3 in.jpg"alt="Producto_ 62"><h4>Cadena Amarilla Plastica 3 in</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5523909</p>
+        </div>
+
+        <div class="producto" data-name="Caja de Marcadores para Pizarron con 4 pzas">
+            <img src="Caja de Marcadores para Pizarron con 4 pzas.jpg"alt="Producto_ 63"><h4>Caja de Marcadores para Pizarron con 4 pzas</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5529992</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Corta Azul Rey">
+            <img src="Camisa Manga Corta Azul Rey.jpg"alt="Producto_ 64"><h4>Camisa Manga Corta Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539416</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Larga Azul Rey">
+            <img src="Camisa Manga Larga Azul Rey.jpg"alt="Producto_ 65"><h4>Camisa Manga Larga Azul Rey</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539417</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Larga Caqui">
+            <img src="Camisa Manga Larga Caqui.jpg"alt="Producto_ 66"><h4>Camisa Manga Larga Caqui</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539426</p>
+        </div>
+
+        <div class="producto" data-name="Camisa Manga Larga Caqui Ignifuga y Contra Arco Electrico">
+            <img src="Camisa Manga Larga Caqui Ignifuga y Contra Arco Electrico.jpg"alt="Producto_ 67"><h4>Camisa Manga Larga Caqui Ignifuga y Contra Arco Electrico</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539434</p>
+        </div>
+        <div class="producto" data-name="Candado de Seguridad Color Azul">
+            <img src="Candado de Seguridad Color Azul.jpg" alt="Producto 68">
+            <h4>Candado de Seguridad Color Azul</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU3() {
+      var select = document.getElementById("Llaves");
+      var SKU3 = document.getElementById("SKU3");
+      
+      if (select.value === "1") {
+        SKU3.innerHTML = "5541030";
+          } else if (select.value === "2") {
+        SKU3.innerHTML = "4233278";
+
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="Llaves">LLaves:</label>
+  <select id="Llaves" onchange="cambiarSKU3()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    
+
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU3">5541030</span></p>
+        </div>
+
+        <div class="producto" data-name="Candado de Seguridad Color Rojo">
+            <img src="Candado de Seguridad Color Rojo.jpg"alt="Producto_ 69"><h4>Candado de Seguridad Color Rojo</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5524014</p>
+        </div>
+
+        <div class="producto" data-name="Candado de Seguridad Color Verde">
+            <img src="Candado de Seguridad Color Verde.jpg"alt="Producto_ 70"><h4>Candado de Seguridad Color Verde</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:4231438</p>
+        </div>
+
+        <div class="producto" data-name="Candado Dielectrico para Bloqueo Color Azul">
+            <img src="Candado Dielectrico para Bloqueo Color Azul.jpg"alt="Producto_ 71"><h4>Candado Dielectrico para Bloqueo Color Azul</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5536106</p>
+        </div>
+
+        <div class="producto" data-name="Cardetela de 50X50 (Paquete de 475)">
+            <img src="Cardetela de 50X50 (Paquete de 475).jpg"alt="Producto_ 72"><h4>Cardetela de 50X50 (Paquete de 475)</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5512664</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 0.5 in Arillo Negro">
+            <img src="Carpeta Panoramica Tamaño Carta 0.5 in Arillo Negro.jpg"alt="Producto_ 73"><h4>Carpeta Panoramica Tamaño Carta 0.5 in Arillo Negro</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530167</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 1 in">
+            <img src="Carpeta Panoramica Tamaño Carta 1 in.jpg"alt="Producto_ 74"><h4>Carpeta Panoramica Tamaño Carta 1 in</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530164</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 3 in">
+            <img src="Carpeta Panoramica Tamaño Carta 3 in.jpg"alt="Producto_ 75"><h4>Carpeta Panoramica Tamaño Carta 3 in</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530159</p>
+        </div>
+
+        <div class="producto" data-name="Carpeta Panoramica Tamaño Carta 4 in Arillo Blanco">
+            <img src="Carpeta Panoramica Tamaño Carta 4 in Arillo Blanco.jpg"alt="Producto_ 76"><h4>Carpeta Panoramica Tamaño Carta 4 in Arillo Blanco</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5530170</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho 6001 para Vapores Organicos">
+            <img src="Cartucho 6001 para Vapores Organicos.jpg"alt="Producto_ 77"><h4>Cartucho 6001 para Vapores Organicos</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5506435</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Amarillo HP 727">
+            <img src="Cartucho Amarillo HP 727.jpg"alt="Producto_ 78"><h4>Cartucho Amarillo HP 727</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:5532547</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian Claro HP 831">
+            <img src="Cartucho Cian Claro HP 831.jpg"alt="Producto_ 79"><h4>Cartucho Cian Claro HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532505</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian HP 727">
+            <img src="Cartucho Cian HP 727.jpg"alt="Producto_ 80"><h4>Cartucho Cian HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532548</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian HP 831A">
+            <img src="Cartucho Cian HP 831A.jpg"alt="Producto_ 81"><h4>Cartucho Cian HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532502</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Cian Negro HP 831">
+            <img src="Cartucho Cian Negro HP 831.jpg"alt="Producto_ 82"><h4>Cartucho Cian Negro HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532510</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho de Mantenimiento HP 831">
+            <img src="Cartucho de Mantenimiento HP 831.jpg"alt="Producto_ 83"><h4>Cartucho de Mantenimiento HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5533734</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho de Repuesto Canister">
+            <img src="Cartucho de Repuesto Canister.jpg"alt="Producto_ 84"><h4>Cartucho de Repuesto Canister</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506426</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Gris HP 727">
+            <img src="Cartucho Gris HP 727.jpg"alt="Producto_ 85"><h4>Cartucho Gris HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532545</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Latex Amarillo HP 831A">
+            <img src="Cartucho Latex Amarillo HP 831A.jpg"alt="Producto_ 86"><h4>Cartucho Latex Amarillo HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5526757</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Latex Magenta Claro HP 831A">
+            <img src="Cartucho Latex Magenta Claro HP 831A.jpg"alt="Producto_ 87"><h4>Cartucho Latex Magenta Claro HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532504</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Latex Magenta HP 831A">
+            <img src="Cartucho Latex Magenta HP 831A.jpg"alt="Producto_ 88"><h4>Cartucho Latex Magenta HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5526756</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Magenta Amarillo Claro HP 831">
+            <img src="Cartucho Magenta Amarillo Claro HP 831.jpg"alt="Producto_ 89"><h4>Cartucho Magenta Amarillo Claro HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532512</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Magenta Claro Cian HP 831">
+            <img src="Cartucho Magenta Claro Cian HP 831.jpg"alt="Producto_ 90"><h4>Cartucho Magenta Claro Cian HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532511</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Magenta HP 727">
+            <img src="Cartucho Magenta HP 727.jpg"alt="Producto_ 91"><h4>Cartucho Magenta HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532546</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Negro HP 727">
+            <img src="Cartucho Negro HP 727.jpg"alt="Producto_ 92"><h4>Cartucho Negro HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532543</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Negro HP 831A">
+            <img src="Cartucho Negro HP 831A.jpg"alt="Producto_ 93"><h4>Cartucho Negro HP 831A</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532503</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Negro Mate HP 727">
+            <img src="Cartucho Negro Mate HP 727.jpg"alt="Producto_ 94"><h4>Cartucho Negro Mate HP 727</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532544</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Optimizador de Latex HP 831">
+            <img src="Cartucho Optimizador de Latex HP 831.jpg"alt="Producto_ 95"><h4>Cartucho Optimizador de Latex HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532509</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho Optimizador HP 831">
+            <img src="Cartucho Optimizador HP 831.jpg"alt="Producto_ 96"><h4>Cartucho Optimizador HP 831</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5532508</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho para Amoniaco y Metilamina">
+            <img src="Cartucho para Amoniaco y Metilamina.jpg"alt="Producto_ 97"><h4>Cartucho para Amoniaco y Metilamina</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506480</p>
+        </div>
+
+        <div class="producto" data-name="Cartucho para Vapores Organicos (Cloro, Hidrógeno, Dioxido de Azufre, Sulfuro y Fluoruro de Hidrogeno">
+            <img src="Cartucho para Vapores Organicos (Cloro, Hidrógeno, Dioxido de Azufre, Sulfuro y Fluoruro de Hidrogeno.jpg"alt="Producto_ 98"><h4>Cartucho para Vapores Organicos (Cloro, Hidrógeno, Dioxido de Azufre, Sulfuro y Fluoruro de Hidrogeno</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506479</p>
+        </div>
+
+        <div class="producto" data-name="Cartulina Opalina Tamaño Carta con 100 Hojas">
+            <img src="Cartulina Opalina Tamaño Carta con 100 Hojas.jpg"alt="Producto_ 99"><h4>Cartulina Opalina Tamaño Carta con 100 Hojas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530160</p>
+        </div>
+
+        <div class="producto" data-name="Casco Azul BUM CAP">
+            <img src="Casco Azul BUM CAP.jpg"alt="Producto_ 100"><h4>Casco Azul BUM CAP</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5517586</p>
+        </div>
+
+        <div class="producto" data-name="Casco Blanco BUM CAP">
+            <img src="Casco Blanco BUM CAP.jpg"alt="Producto_ 101"><h4>Casco Blanco BUM CAP</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5517584</p>
+        </div>
+
+        <div class="producto" data-name="Casco Blanco MCA">
+            <img src="Casco Blanco MCA.jpg"alt="Producto_ 102"><h4>Casco Blanco MCA</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541826</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Amarillo">
+            <img src="Casco Infracap Amarillo.jpg"alt="Producto_ 103"><h4>Casco Infracap Amarillo</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5533306</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Azul">
+            <img src="Casco Infracap Azul.jpg"alt="Producto_ 104"><h4>Casco Infracap Azul</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506506</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Rojo">
+            <img src="Casco Infracap Rojo.jpg"alt="Producto_ 105"><h4>Casco Infracap Rojo</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5533305</p>
+        </div>
+
+        <div class="producto" data-name="Casco Infracap Verde">
+            <img src="Casco Infracap Verde.jpg"alt="Producto_ 106"><h4>Casco Infracap Verde</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5526770</p>
+        </div>
+
+        <div class="producto" data-name="Casco Naranja MCA">
+            <img src="Casco Naranja MCA.jpg"alt="Producto_ 107"><h4>Casco Naranja MCA</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541827</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo  Swiss-Diary">
+            <img src="Cepillo  Swiss-Diary.jpg"alt="Producto_ 108"><h4>Cepillo  Swiss-Diary</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525762</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo Bi-nivel">
+            <img src="Cepillo Bi-nivel.jpg"alt="Producto_ 109"><h4>Cepillo Bi-nivel</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525757</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Alambre de Acero Inoxidable">
+            <img src="Cepillo de Alambre de Acero Inoxidable.jpg"alt="Producto_ 110"><h4>Cepillo de Alambre de Acero Inoxidable</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505872</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Ixtle">
+            <img src="Cepillo de Ixtle.jpg"alt="Producto_ 111"><h4>Cepillo de Ixtle</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505866</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Mano de Alambre Acero al Carbono">
+            <img src="Cepillo de Mano de Alambre Acero al Carbono.jpg"alt="Producto_ 112"><h4>Cepillo de Mano de Alambre Acero al Carbono</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505864</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo de Tanque Duro">
+            <img src="Cepillo de Tanque Duro.jpg"alt="Producto_ 113"><h4>Cepillo de Tanque Duro</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525390</p>
+        </div>
+
+        <div class="producto" data-name="Cepillo Multisuperficies">
+            <img src="Cepillo Multisuperficies.jpg"alt="Producto_ 114"><h4>Cepillo Multisuperficies</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525778</p>
+        </div>
+
+        <div class="producto" data-name="Cesto para la Basura">
+            <img src="Cesto para la Basura.jpg"alt="Producto_ 115"><h4>Cesto para la Basura</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5502681</p>
+        </div>
+     <div class="producto" data-name="Chaleco Alta Visibilidad 1 Color Naranja">
+            <img src="Chaleco Alta Visibilidad 1 Color Naranja.jpg" alt="Producto 116">
+            <h4>Chaleco Alta Visibilidad 1 Color Naranja </h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU5() {
+      var select = document.getElementById("talla4");
+      var SKU5 = document.getElementById("SKU5");
+      
+      if (select.value === "M") {
+        SKU5.innerHTML = "5528862";
+      } else if (select.value === "G") {
+        SKU5.innerHTML = "5528863";
+             
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla4">Talla:</label>
+  <select id="talla4" onchange="cambiarSKU5()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+
+  </select>
+  <p>SKU: <span id="SKU5">5528862</span></p>
+        </div>
+        <div class="producto" data-name="Chaleco Alta Visibilidad Color Naranja">
+            <img src="Chaleco Alta Visibilidad Color Naranja.jpg" alt="Producto 117">
+            <h4>Chaleco Alta Visibilidad  Color Naranja </h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU6() {
+      var select = document.getElementById("talla5");
+      var SKU6 = document.getElementById("SKU6");
+      
+      if (select.value === "M") {
+        SKU6.innerHTML = "5520968";
+      } else if (select.value === "G") {
+        SKU6.innerHTML = "5520973";
+      } else if (select.value === "XG") {
+        SKU6.innerHTML = "5520951";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla5">Talla:</label>
+  <select id="talla5" onchange="cambiarSKU6()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+
+  </select>
+  <p>SKU: <span id="SKU6">5520968</span></p>
+        </div>
+
+        <div class="producto" data-name="Chaleco de Malla Color Azul">
+            <img src="Chaleco de Malla Color Azul.jpg"alt="Producto_ 118"><h4>Chaleco de Malla Color Azul</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5521045</p>
+        </div>
+
+        <div class="producto" data-name="Chaleco para Rescatista">
+            <img src="Chaleco para Rescatista.jpg"alt="Producto_ 119"><h4>Chaleco para Rescatista</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5524453</p>
+        </div>
+
+        <div class="producto" data-name="Chamarra para Hombre Azul Marino">
+            <img src="Chamarra para Hombre Azul Marino.jpg"alt="Producto_ 120"><h4>Chamarra para Hombre Azul Marino</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539465</p>
+        </div>
+
+        <div class="producto" data-name="Chamarra para Mujer Azul Marino">
+            <img src="Chamarra para Mujer Azul Marino.jpg"alt="Producto_ 121"><h4>Chamarra para Mujer Azul Marino</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539467</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Antiderrapante 3 in Precaucion">
+            <img src="Cinta Antiderrapante 3 in Precaucion.jpg"alt="Producto_ 122"><h4>Cinta Antiderrapante 3 in Precaucion</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:4245727</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Doble Cara 12 mm x 50 m">
+            <img src="Cinta Doble Cara 12 mm x 50 m.jpg"alt="Producto_ 123"><h4>Cinta Doble Cara 12 mm x 50 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530061</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Magica 12 mm x 33 m">
+            <img src="Cinta Magica 12 mm x 33 m.jpg"alt="Producto_ 124"><h4>Cinta Magica 12 mm x 33 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529975</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Magica 24 mm x 65 m">
+            <img src="Cinta Magica 24 mm x 65 m.jpg"alt="Producto_ 125"><h4>Cinta Magica 24 mm x 65 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530058</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Metrica Truper 50 m">
+            <img src="Cinta Metrica Truper 50 m.jpg"alt="Producto_ 126"><h4>Cinta Metrica Truper 50 m</h4><p></p>
+            <p></p>
+            <p>SKU:5542016</p>
+        </div>
+
+        <div class="producto" data-name="Cinta Testigo para Autoclave">
+            <img src="Cinta Testigo para Autoclave.jpg"alt="Producto_ 127"><h4>Cinta Testigo para Autoclave</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5506675</p>
+        </div>
+
+        <div class="producto" data-name="Clip Gotico con 100 pzas">
+            <img src="Clip Gotico con 100 pzas.jpg"alt="Producto_ 128"><h4>Clip Gotico con 100 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529979</p>
+        </div>
+
+        <div class="producto" data-name="Clip Mariposa No. 1 con 12 pzas">
+            <img src="Clip Mariposa No. 1 con 12 pzas.jpg"alt="Producto_ 129"><h4>Clip Mariposa No. 1 con 12 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530062</p>
+        </div>
+
+        <div class="producto" data-name="Clip Mariposa No. 2 con 50 pzas">
+            <img src="Clip Mariposa No. 2 con 50 pzas.jpg"alt="Producto_ 130"><h4>Clip Mariposa No. 2 con 50 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530063</p>
+        </div>
+
+        <div class="producto" data-name="Cloro Cloralex con 950 ml">
+            <img src="Cloro Cloralex con 950 ml.jpg"alt="Producto_ 131"><h4>Cloro Cloralex con 950 ml</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5506859</p>
+        </div>
+
+        <div class="producto" data-name="Cofia Lavable">
+            <img src="Cofia Lavable.jpg"alt="Producto_ 132"><h4>Cofia Lavable</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506500</p>
+        </div>
+
+        <div class="producto" data-name="Cono de Papel con 250 pzas">
+            <img src="Cono de Papel con 250 pzas.jpg"alt="Producto_ 133"><h4>Cono de Papel con 250 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5531587</p>
+        </div>
+
+        <div class="producto" data-name="Cristal Claro para Careta de Soldador">
+            <img src="Cristal Claro para Careta de Soldador.jpg"alt="Producto_ 134"><h4>Cristal Claro para Careta de Soldador</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506063</p>
+        </div>
+
+        <div class="producto" data-name="Cuaderno (Libreta) de Cuadro Grande">
+            <img src="Cuaderno (Libreta) de Cuadro Grande.jpg"alt="Producto_ 135"><h4>Cuaderno (Libreta) de Cuadro Grande</h4><p>Papeleria</p>
+            <p>Cuadernos, Libretas y Carpetas</p>
+            <p>SKU:5530010</p>
+        </div>
+
+        <div class="producto" data-name="Cuaderno (Libreta) de Rayas">
+            <img src="Cuaderno (Libreta) de Rayas.jpg"alt="Producto_ 136"><h4>Cuaderno (Libreta) de Rayas</h4><p>Papeleria</p>
+            <p>Cuadernos, Libretas y Carpetas</p>
+            <p>SKU:5530064</p>
+        </div>
+
+        <div class="producto" data-name="Cubeta de Plastico de 19 L">
+            <img src="Cubeta de Plastico de 19 L.jpg"alt="Producto_ 137"><h4>Cubeta de Plastico de 19 L</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5529197</p>
+        </div>
+
+        <div class="producto" data-name="Cubeta Kimkare de 18 L">
+            <img src="Cubeta Kimkare de 18 L.jpg"alt="Producto_ 138"><h4>Cubeta Kimkare de 18 L</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5505884</p>
+        </div>
+
+        <div class="producto" data-name="Cubre Bota Desechable">
+            <img src="Cubre Bota Desechable.jpg"alt="Producto_ 139"><h4>Cubre Bota Desechable</h4><p>EPP</p>
+            <p>Calzado</p>
+            <p>SKU:5524987</p>
+        </div>
+
+        <div class="producto" data-name="Desengrapadora">
+            <img src="Desengrapadora.jpg"alt="Producto_ 140"><h4>Desengrapadora</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530065</p>
+        </div>
+
+        <div class="producto" data-name="Empaquetadura Moldeable 400 g">
+            <img src="Empaquetadura Moldeable 400 g.jpg"alt="Producto_ 141"><h4>Empaquetadura Moldeable 400 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056355</p>
+        </div>
+
+        <div class="producto" data-name="Engrapadora de Golpe">
+            <img src="Engrapadora de Golpe.jpg"alt="Producto_ 142"><h4>Engrapadora de Golpe</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529981</p>
+        </div>
+
+        <div class="producto" data-name="Escoba de Mijo de 7 hilos">
+            <img src="Escoba de Mijo de 7 hilos.jpg"alt="Producto_ 143"><h4>Escoba de Mijo de 7 hilos</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505860</p>
+        </div>
+
+        <div class="producto" data-name="Escoba de Plastico">
+            <img src="Escoba de Plastico.jpg"alt="Producto_ 144"><h4>Escoba de Plastico</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5510925</p>
+        </div>
+
+        <div class="producto" data-name="Escoba tipo Abanico">
+            <img src="Escoba tipo Abanico.jpg"alt="Producto_ 145"><h4>Escoba tipo Abanico</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5527691</p>
+        </div>
+
+        <div class="producto" data-name="Escobillon de 0.5 in">
+            <img src="Escobillon de 0.5 in.jpg"alt="Producto_ 146"><h4>Escobillon de 0.5 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5525773</p>
+        </div>
+
+        <div class="producto" data-name="Escobillon de 3/16 in">
+            <img src="Escobillon de 3 16 in.jpg"alt="Producto_ 147"><h4>Escobillon de 3/16 in</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505873</p>
+        </div>
+
+        <div class="producto" data-name="Esmalte Acrilico Transparente Aerocomex  400 ml">
+            <img src="Esmalte Acrilico Transparente Aerocomex  400 ml.jpg"alt="Producto_ 148"><h4>Esmalte Acrilico Transparente Aerocomex  400 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:5532804</p>
+        </div>
+
+        <div class="producto" data-name="Etiqueta Color Rojo 24 mm x 76 m">
+            <img src="Etiqueta Color Rojo 24 mm x 76 m.jpg"alt="Producto_ 149"><h4>Etiqueta Color Rojo 24 mm x 76 m</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529852</p>
+        </div>
+
+        <div class="producto" data-name="Eurochlor Kg">
+            <img src="Eurochlor Kg.jpg"alt="Producto_ 150"><h4>Eurochlor Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000849</p>
+        </div>
+        <div class="producto" data-name="Faja Lumbar">
+            <img src="Faja Lumbar.jpg" alt="Producto 151">
+            <h4>Faja Lumbar</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU7() {
+      var select = document.getElementById("talla6");
+      var SKU7 = document.getElementById("SKU7");
+      
+      if (select.value === "S") {
+        SKU7.innerHTML = "5507916";
+      } else if (select.value === "M") {
+        SKU7.innerHTML = "5506402";
+      } else if (select.value === "G") {
+        SKU7.innerHTML = "5506419";
+      } else if (select.value === "XG") {
+        SKU7.innerHTML = "5506472";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla6">Talla:</label>
+  <select id="talla6" onchange="cambiarSKU7()">
+    <option value="M">S</option>
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+
+  </select>
+  <p>SKU: <span id="SKU7">5507916</span></p>
+        </div>
+
+        <div class="producto" data-name="Fibra de Acero Inoxidable">
+            <img src="Fibra de Acero Inoxidable.jpg"alt="Producto_ 152"><h4>Fibra de Acero Inoxidable</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5505867</p>
+        </div>
+
+        <div class="producto" data-name="Fibra Verde de Nylon">
+            <img src="Fibra Verde de Nylon.jpg"alt="Producto_ 153"><h4>Fibra Verde de Nylon</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5512669</p>
+        </div>
+
+        <div class="producto" data-name="Fijador de Roscas LOCTITE 262 con 10 ml">
+            <img src="Fijador de Roscas LOCTITE 262 con 10 ml.jpg"alt="Producto_ 154"><h4>Fijador de Roscas LOCTITE 262 con 10 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053969</p>
+        </div>
+
+        <div class="producto" data-name="Flash Liquido Desengrasante Kg">
+            <img src="Flash Liquido Desengrasante Kg.jpg"alt="Producto_ 155"><h4>Flash Liquido Desengrasante Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5505875</p>
+        </div>
+
+        <div class="producto" data-name="Florete Rayado Forma Francesa">
+            <img src="Florete Rayado Forma Francesa.jpg"alt="Producto_ 156"><h4>Florete Rayado Forma Francesa</h4><p>Papeleria</p>
+            <p>Cuadernos, Libretas y Carpetas</p>
+            <p>SKU:5530118</p>
+        </div>
+
+        <div class="producto" data-name="Formajuntas Loctite 118.8 gr">
+            <img src="Formajuntas Loctite 118.8 gr.jpg"alt="Producto_ 157"><h4>Formajuntas Loctite 118.8 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057637</p>
+        </div>
+
+        <div class="producto" data-name="Fosnik FS Kg">
+            <img src="Fosnik FS Kg.jpg"alt="Producto_ 158"><h4>Fosnik FS Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000840</p>
+        </div>
+
+        <div class="producto" data-name="Franela Tramo de 1 m">
+            <img src="Franela Tramo de 1 m.jpg"alt="Producto_ 159"><h4>Franela Tramo de 1 m</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5521368</p>
+        </div>
+
+        <div class="producto" data-name="Full Power Kg">
+            <img src="Full Power Kg.jpg"alt="Producto_ 160"><h4>Full Power Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000842</p>
+        </div>
+
+        <div class="producto" data-name="Glicerina 1 kg">
+            <img src="Glicerina 1 kg.jpg"alt="Producto_ 161"><h4>Glicerina 1 kg</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4018343</p>
+        </div>
+
+        <div class="producto" data-name="Goma Blanca para Lapiz y Color">
+            <img src="Goma Blanca para Lapiz y Color.jpg"alt="Producto_ 162"><h4>Goma Blanca para Lapiz y Color</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530188</p>
+        </div>
+
+        <div class="producto" data-name="Gorra Protectora de Impacto">
+            <img src="Gorra Protectora de Impacto.jpg"alt="Producto_ 163"><h4>Gorra Protectora de Impacto</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5526580</p>
+        </div>
+
+        <div class="producto" data-name="Grapa Estandar con 5040 pzas">
+            <img src="Grapa Estandar con 5040 pzas.jpg"alt="Producto_ 164"><h4>Grapa Estandar con 5040 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529936</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Aliplex 2) Kg">
+            <img src="Grasa (Aliplex 2) Kg.jpg"alt="Producto_ 166"><h4>Grasa (Aliplex 2) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057061</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Bentona BAT-3 Roshfrans) con 16 Kg">
+            <img src="Grasa (Bentona BAT-3 Roshfrans) con 16 Kg.jpg"alt="Producto_ 167"><h4>Grasa (Bentona BAT-3 Roshfrans) con 16 Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:4081835</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Fluida Aliplex 00) Kg">
+            <img src="Grasa (Fluida Aliplex 00) Kg.jpg"alt="Producto_ 168"><h4>Grasa (Fluida Aliplex 00) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4142989</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil FM 222) Kg">
+            <img src="Grasa (Mobil FM 222) Kg.jpg"alt="Producto_ 169"><h4>Grasa (Mobil FM 222) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4090015</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil SHC 007) Kg">
+            <img src="Grasa (Mobil SHC 007) Kg.jpg"alt="Producto_ 170"><h4>Grasa (Mobil SHC 007) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056978</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil SHC 100) Kg">
+            <img src="Grasa (Mobil SHC 100) Kg.jpg"alt="Producto_ 171"><h4>Grasa (Mobil SHC 100) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057567</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobil SHC 460) Kg">
+            <img src="Grasa (Mobil SHC 460) Kg.jpg"alt="Producto_ 172"><h4>Grasa (Mobil SHC 460) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057569</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobilith AW2) Kg">
+            <img src="Grasa (Mobilith AW2) Kg.jpg"alt="Producto_ 173"><h4>Grasa (Mobilith AW2) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4056471</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobilux EP 1) Kg">
+            <img src="Grasa (Mobilux EP 1) Kg.jpg"alt="Producto_ 174"><h4>Grasa (Mobilux EP 1) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4057026</p>
+        </div>
+
+        <div class="producto" data-name="Grasa (Mobilux EP 2) Kg">
+            <img src="Grasa (Mobilux EP 2) Kg.jpg"alt="Producto_ 175"><h4>Grasa (Mobilux EP 2) Kg</h4><p>Lubricantes</p>
+            <p></p>
+            <p>SKU:4033957</p>
+        </div>
+
+        <div class="producto" data-name="Grasa Fuchs 400 gr">
+            <img src="Grasa Fuchs 400 gr.jpg"alt="Producto_ 176"><h4>Grasa Fuchs 400 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056792</p>
+        </div>
+ <div class="producto" data-name="Guante Anticorte D-ROC">
+            <img src="Guante Anticorte D-ROC.jpg" alt="Producto 177">
+            <h4>Guante Anticorte D-ROC</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU8() {
+      var select = document.getElementById("talla7");
+      var SKU8 = document.getElementById("SKU8");
+      
+      if (select.value === "6") {
+        SKU8.innerHTML = "5539343";
+      } else if (select.value === "7") {
+        SKU8.innerHTML = "5539344";
+      } else if (select.value === "8") {
+        SKU8.innerHTML = "5539345";
+      } else if (select.value === "9") {
+        SKU8.innerHTML = "5539346";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla7">Talla:</label>
+  <select id="talla7" onchange="cambiarSKU8()">
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+
+  </select>
+  <p>SKU: <span id="SKU8">5539343</span></p>
+        </div>
+        <div class="producto" data-name="Guante Anticorte MAPA">
+            <img src="Guante Anticorte MAPA.jpg" alt="Producto 178">
+            <h4>Guante Anticorte MAPA</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU9() {
+      var select = document.getElementById("talla8");
+      var SKU9 = document.getElementById("SKU9");
+      
+      if (select.value === "8") {
+        SKU9.innerHTML = "5527331";
+      } else if (select.value === "9") {
+        SKU9.innerHTML = "5527332";
+      } else if (select.value === "10") {
+        SKU9.innerHTML = "5527333";
+      } else if (select.value === "12") {
+        SKU9.innerHTML = "5521186";
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla8">Talla:</label>
+  <select id="talla8" onchange="cambiarSKU9()">
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="12">12</option>
+  
+  </select>
+  <p>SKU: <span id="SKU9">5527331</span></p>
+        </div>
+        <div class="producto" data-name="Guante Anticorte Quimicos SHOWA">
+            <img src="Guante Anticorte Quimicos SHOWA.jpg" alt="Producto 179">
+            <h4>Guante Anticorte Quimicos SHOWA</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU10() {
+      var select = document.getElementById("talla9");
+      var SKU10 = document.getElementById("SKU10");
+      
+      if (select.value === "8") {
+        SKU10.innerHTML = "5537483";
+      } else if (select.value === "9") {
+        SKU10.innerHTML = "5537480";
+      } else if (select.value === "10") {
+        SKU10.innerHTML = "5537481";
+    
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla9">Talla:</label>
+  <select id="talla9" onchange="cambiarSKU10()">
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+  
+  </select>
+  <p>SKU: <span id="SKU10">5537483</span></p>
+        </div>
+        <div class="producto" data-name="Guante Color Cromo de Canraza">
+            <img src="Guante Color Cromo de Canraza.jpg" alt="Producto 180">
+            <h4>Guante Color Cromo de Canraza</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU11() {
+      var select = document.getElementById("talla10");
+      var SKU11 = document.getElementById("SKU11");
+      
+      if (select.value === "9") {
+        SKU11.innerHTML = "5506425";
+      } else if (select.value === "10") {
+        SKU11.innerHTML = "5506422";
+      } else if (select.value === "12") {
+        SKU11.innerHTML = "5506424";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla10">Talla:</label>
+  <select id="talla10" onchange="cambiarSKU11()">
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="12">12</option>
+  
+  </select>
+  <p>SKU: <span id="SKU11">5506425</span></p>
+        </div>
+        <div class="producto" data-name="Guante de Hule Negro Adex">
+            <img src="Guante de Hule Negro Adex.jpg" alt="Producto 181">
+            <h4>Guante de Hule Negro Adex</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU12() {
+      var select = document.getElementById("talla11");
+      var SKU12 = document.getElementById("SKU12");
+      
+      if (select.value === "9") {
+        SKU12.innerHTML = "5506408";
+      } else if (select.value === "10") {
+        SKU12.innerHTML = "5506409";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla11">Talla:</label>
+  <select id="talla11" onchange="cambiarSKU12()">
+    <option value="9">9</option>
+    <option value="10">10</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU12">5506408</span></p>
+        </div>
+
+        <div class="producto" data-name="Guante de Nitrilo Besto">
+            <img src="Guante de Nitrilo Besto.jpg"alt="Producto_ 182"><h4>Guante de Nitrilo Besto</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506473</p>
+        </div>
+<div class="producto" data-name="Guante de Protección HY-FLEX">
+            <img src="Guante de Protección  HY FLEX.jpg" alt="Producto 183">
+            <h4>Guante de Protección HY-FLEX</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU13() {
+      var select = document.getElementById("talla12");
+      var SKU13 = document.getElementById("SKU13");
+      
+      if (select.value === "8") {
+        SKU13.innerHTML = "5519626";
+          } else if (select.value === "9") {
+        SKU13.innerHTML = "5520091";
+          } else if (select.value === "10") {
+        SKU13.innerHTML = "5520250";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla12">Talla:</label>
+  <select id="talla12" onchange="cambiarSKU13()">
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU13">5519626</span></p>
+        </div>
+        <div class="producto" data-name="Guante en Piel Tipo Electricista">
+            <img src="Guante en Piel Tipo Electricista.jpg" alt="Producto 184">
+            <h4>Guante en Piel Tipo Electricista</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU14() {
+      var select = document.getElementById("talla13");
+      var SKU14 = document.getElementById("SKU14");
+      
+      if (select.value === "9") {
+        SKU14.innerHTML = "5506489";
+          } else if (select.value === "10") {
+        SKU14.innerHTML = "5506498";
+          } else if (select.value === "11") {
+        SKU14.innerHTML = "5506499";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla13">Talla:</label>
+  <select id="talla13" onchange="cambiarSKU14()">
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU14">5506489</span></p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo con 100 pz">
+            <img src="Guantes de Nitrilo con 100 pz.jpg"alt="Producto_ 185"><h4>Guantes de Nitrilo con 100 pz</h4><p>EPP</p>
+            <p>Laboratorio</p>
+            <p>SKU:5519761</p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo de Manga Corta con 100 pzs">
+            <img src="Guantes de Nitrilo de Manga Corta con 100 pzs.jpg"alt="Producto_ 186"><h4>Guantes de Nitrilo de Manga Corta con 100 pzs</h4><p>EPP</p>
+            <p>Laboratorio</p>
+            <p>SKU:5520030</p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo de Manga Larga">
+            <img src="Guantes de Nitrilo de Manga Larga.jpg"alt="Producto_ 187"><h4>Guantes de Nitrilo de Manga Larga</h4><p>EPP</p>
+            <p>Limpieza</p>
+            <p>SKU:5518341</p>
+        </div>
+
+        <div class="producto" data-name="Guantes de Nitrilo Purpura de Manga Corta con 100 pzs">
+            <img src="Guantes de Nitrilo Purpura de Manga Corta con 100 pzs.jpg"alt="Producto_ 188"><h4>Guantes de Nitrilo Purpura de Manga Corta con 100 pzs</h4><p>EPP</p>
+            <p>Laboratorio</p>
+            <p>SKU:5520020</p>
+        </div>
+
+        <div class="producto" data-name="Gusano para Engargolar Negro 1 1/4 in">
+            <img src="Gusano para Engargolar Negro 1 1 4 in.jpg"alt="Producto_ 189"><h4>Gusano para Engargolar Negro 1 1/4 in</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530197</p>
+        </div>
+
+        <div class="producto" data-name="Hipoclorito de Calcio (HTH) Kg">
+            <img src="Hipoclorito de Calcio (HTH) Kg.jpg"alt="Producto_ 190"><h4>Hipoclorito de Calcio (HTH) Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000505</p>
+        </div>
+
+        <div class="producto" data-name="Hipoclorito de Sodio Kg">
+            <img src="Hipoclorito de Sodio Kg.jpg"alt="Producto_ 191"><h4>Hipoclorito de Sodio Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000522</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Amarilla Fluoresente Tamaño Carta con 100 pzas">
+            <img src="Hoja Amarilla Fluoresente Tamaño Carta con 100 pzas.jpg"alt="Producto_ 193"><h4>Hoja Amarilla Fluoresente Tamaño Carta con 100 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530194</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Doble Carta con 1000 pzas">
+            <img src="Hoja Doble Carta con 1000 pzas.jpg"alt="Producto_ 194"><h4>Hoja Doble Carta con 1000 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530141</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Roja Tamaño Carta con 100 pzas">
+            <img src="Hoja Roja Tamaño Carta con 100 pzas.jpg"alt="Producto_ 195"><h4>Hoja Roja Tamaño Carta con 100 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530066</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Tamaño Carta con Pleca a media hoja con 250 pzas">
+            <img src="Hoja Tamaño Carta con Pleca a media hoja con 250 pzas.jpg"alt="Producto_ 196"><h4>Hoja Tamaño Carta con Pleca a media hoja con 250 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5506000</p>
+        </div>
+
+        <div class="producto" data-name="Hoja Verde Tamaño Carta con 100 pzas">
+            <img src="Hoja Verde Tamaño Carta con 100 pzas.jpg"alt="Producto_ 197"><h4>Hoja Verde Tamaño Carta con 100 pzas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530202</p>
+        </div>
+ <div class="producto" data-name="Impermeable Chamarra de Color Amarillo">
+            <img src="Impermeable Chamarra Color Amarillo.jpg" alt="Producto 198">
+            <h4>Impermeable Chamarra de Color Amarillo </h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU4() {
+      var select = document.getElementById("talla3");
+      var SKU4 = document.getElementById("SKU4");
+      
+      if (select.value === "M") {
+        SKU4.innerHTML = "5506468";
+      } else if (select.value === "G") {
+        SKU4.innerHTML = "5506469";
+      } else if (select.value === "XG") {
+        SKU4.innerHTML = "5541922";
+          
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla3">Talla:</label>
+  <select id="talla3" onchange="cambiarSKU4()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+    
+
+  
+  </select>
+  <p>SKU: <span id="SKU4">5506468</span></p>
+        </div>
+        <div class="producto" data-name="Impermeable Pantalon  Color Amarillo">
+            <img src="Impermeable Pantalon  Color Amarillo.jpg" alt="Producto 199">
+            <h4>Impermeable Pantalon  Color Amarillo</h4>
+            <p>EPP</p>
+            <p></p>
+             <script>
+    function cambiarSKU15() {
+      var select = document.getElementById("talla14");
+      var SKU15 = document.getElementById("SKU15");
+      
+      if (select.value === "M") {
+        SKU15.innerHTML = "5506466";
+          } else if (select.value === "G") {
+        SKU15.innerHTML = "5506467";
+          } else if (select.value === "XG") {
+        SKU15.innerHTML = "5541921";
+    
+              
+      }
+    }
+  </script>
+</head>
+<body>
+  <label for="talla14">Talla:</label>
+  <select id="talla14" onchange="cambiarSKU15()">
+    <option value="M">M</option>
+    <option value="G">G</option>
+    <option value="XG">XG</option>
+ 
+  
+  </select>
+  <p>SKU: <span id="SKU15">5506466</span></p>
+        </div>
+
+        <div class="producto" data-name="Jabon de Espuma con 1 Litro">
+            <img src="Jabon de Espuma con 1 Litro.jpg"alt="Producto_ 200"><h4>Jabon de Espuma con 1 Litro</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5532430</p>
+        </div>
+
+        <div class="producto" data-name="Jabon de Espuma con 6 Cartuchos de 600 ml">
+            <img src="Jabon de Espuma con 6 Cartuchos de 600 ml.jpg"alt="Producto_ 202"><h4>Jabon de Espuma con 6 Cartuchos de 600 ml</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5536868</p>
+        </div>
+
+        <div class="producto" data-name="Jabon Detergente en Polvo en Bolsa de 10 kg">
+            <img src="Jabon Detergente en Polvo en Bolsa de 10 kg.jpg"alt="Producto_ 203"><h4>Jabon Detergente en Polvo en Bolsa de 10 kg</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5512671</p>
+        </div>
+
+        <div class="producto" data-name="Jabon Detergente en Polvo en Bolsa marca Roma de 1 kg">
+            <img src="Jabon Detergente en Polvo en Bolsa marca Roma de 1 kg.jpg"alt="Producto_ 204"><h4>Jabon Detergente en Polvo en Bolsa marca Roma de 1 kg</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5506867</p>
+        </div>
+
+        <div class="producto" data-name="Jabon Neutro Zote Barra de 400 gr">
+            <img src="Jabon Neutro Zote Barra de 400 gr.jpg"alt="Producto_ 205"><h4>Jabon Neutro Zote Barra de 400 gr</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5505876</p>
+        </div>
+
+        <div class="producto" data-name="Jalador de Doble Esponja">
+            <img src="Jalador de Doble Esponja.jpg"alt="Producto_ 206"><h4>Jalador de Doble Esponja</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5511361</p>
+        </div>
+
+        <div class="producto" data-name="Kit de Limpieza  HBO 90000">
+            <img src="Kit de Limpieza  HBO 90000.jpg"alt="Producto_ 207"><h4>Kit de Limpieza  HBO 90000</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5528438</p>
+        </div>
+
+        <div class="producto" data-name="Lapiz Adhesivo con 22 gr">
+            <img src="Lapiz Adhesivo con 22 gr.jpg"alt="Producto_ 208"><h4>Lapiz Adhesivo con 22 gr</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529937</p>
+        </div>
+
+        <div class="producto" data-name="Lapiz No. 2 HB">
+            <img src="Lapiz No. 2 HB.jpg"alt="Producto_ 209"><h4>Lapiz No. 2 HB</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530027</p>
+        </div>
+
+        <div class="producto" data-name="Lente de Seguridad">
+            <img src="Lente de Seguridad.jpg"alt="Producto_ 210"><h4>Lente de Seguridad</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5540479</p>
+        </div>
+
+        <div class="producto" data-name="Lente de Seguridad Antiparra">
+            <img src="Lente de Seguridad Antiparra.jpg"alt="Producto_ 211"><h4>Lente de Seguridad Antiparra</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541911</p>
+        </div>
+
+        <div class="producto" data-name="Lente de Seguridad Lente sobre Lente">
+            <img src="Lente de Seguridad Lente sobre Lente.jpg"alt="Producto_ 212"><h4>Lente de Seguridad Lente sobre Lente</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5513660</p>
+        </div>
+
+        <div class="producto" data-name="Limpiador de Pisos Concentrado Litro">
+            <img src="Limpiador de Pisos Concentrado Litro.jpg"alt="Producto_ 213"><h4>Limpiador de Pisos Concentrado Litro</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5505883</p>
+        </div>
+
+        <div class="producto" data-name="Limpiador de Superficie Tipo Espuma 400 g">
+            <img src="Limpiador de Superficie Tipo Espuma 400 g.jpg"alt="Producto_ 214"><h4>Limpiador de Superficie Tipo Espuma 400 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056842</p>
+        </div>
+
+        <div class="producto" data-name="Limpiador de Vidrios Windex (650 ml)">
+            <img src="Limpiador de Vidrios Windex (650 ml).jpg"alt="Producto_ 216"><h4>Limpiador de Vidrios Windex (650 ml)</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5501989</p>
+        </div>
+
+        <div class="producto" data-name="Liquido Limpiador para Pintarron con 237 ml">
+            <img src="Liquido Limpiador para Pintarron con 237 ml.jpg"alt="Producto_ 217"><h4>Liquido Limpiador para Pintarron con 237 ml</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530005</p>
+        </div>
+
+        <div class="producto" data-name="Loctite para Partes Cilindricas 50 ml">
+            <img src="Loctite para Partes Cilindricas 50 ml.jpg"alt="Producto_ 218"><h4>Loctite para Partes Cilindricas 50 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053959</p>
+        </div>
+
+        <div class="producto" data-name="Lubricador Automatico SKF System 24 con 60 ml">
+            <img src="Lubricador Automatico SKF System 24 con 60 ml.jpg"alt="Producto_ 219"><h4>Lubricador Automatico SKF System 24 con 60 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4057435</p>
+        </div>
+
+        <div class="producto" data-name="Lubricante Antiadherente LOCTITE LB 8150 con 453 g">
+            <img src="Lubricante Antiadherente LOCTITE LB 8150 con 453 g.jpg"alt="Producto_ 220"><h4>Lubricante Antiadherente LOCTITE LB 8150 con 453 g</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053951</p>
+        </div>
+
+        <div class="producto" data-name="Magic Plus Kg">
+            <img src="Magic Plus Kg.jpg"alt="Producto_ 221"><h4>Magic Plus Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000843</p>
+        </div>
+
+        <div class="producto" data-name="Manga Anticorte">
+            <img src="Manga Anticorte.jpg"alt="Producto_ 222"><h4>Manga Anticorte</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5525030</p>
+        </div>
+
+        <div class="producto" data-name="Manga Indicadora de Viento 10 in">
+            <img src="Manga Indicadora de Viento 10 in.jpg"alt="Producto_ 223"><h4>Manga Indicadora de Viento 10 in</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5523730</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Color Blanco">
+            <img src="Marcador Color Blanco.jpg"alt="Producto_ 224"><h4>Marcador Color Blanco</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5529391</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Grueso Permanente Azul (Sharpie)">
+            <img src="Marcador Grueso Permanente Azul (Sharpie).jpg"alt="Producto_ 225"><h4>Marcador Grueso Permanente Azul (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530073</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Grueso Permanente Negro (Sharpie)">
+            <img src="Marcador Grueso Permanente Negro (Sharpie).jpg"alt="Producto_ 226"><h4>Marcador Grueso Permanente Negro (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5529991</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Grueso Rojo">
+            <img src="Marcador Grueso Rojo.jpg"alt="Producto_ 227"><h4>Marcador Grueso Rojo</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530000</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Punto Fino Negro (Sharpie)">
+            <img src="Marcador Punto Fino Negro (Sharpie).jpg"alt="Producto_ 228"><h4>Marcador Punto Fino Negro (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530007</p>
+        </div>
+
+        <div class="producto" data-name="Marcador Punto Fino Verde (Sharpie)">
+            <img src="Marcador Punto Fino Verde (Sharpie).jpg"alt="Producto_ 229"><h4>Marcador Punto Fino Verde (Sharpie)</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530012</p>
+        </div>
+
+        <div class="producto" data-name="Marcatextos Amarillo">
+            <img src="Marcatextos Amarillo.jpg"alt="Producto_ 230"><h4>Marcatextos Amarillo</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5529939</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla Cara Completa Advantage">
+            <img src="Mascarilla Cara Completa Advantage.jpg"alt="Producto_ 231"><h4>Mascarilla Cara Completa Advantage</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5527608</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla Cara Completa Ultravue">
+            <img src="Mascarilla Cara Completa Ultravue.jpg"alt="Producto_ 232"><h4>Mascarilla Cara Completa Ultravue</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5523843</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla de Soldador Moldex">
+            <img src="Mascarilla de Soldador Moldex.jpg"alt="Producto_ 233"><h4>Mascarilla de Soldador Moldex</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506482</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla Media Cara">
+            <img src="Mascarilla Media Cara.jpg"alt="Producto_ 234"><h4>Mascarilla Media Cara</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506434</p>
+        </div>
+
+        <div class="producto" data-name="Mascarilla para Polvo y Neblina">
+            <img src="Mascarilla para Polvo y Neblina.jpg"alt="Producto_ 235"><h4>Mascarilla para Polvo y Neblina</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506414</p>
+        </div>
+
+        <div class="producto" data-name="Mica para Careta Bionic">
+            <img src="Mica para Careta Bionic.jpg"alt="Producto_ 236"><h4>Mica para Careta Bionic</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5525683</p>
+        </div>
+
+        <div class="producto" data-name="Mica Termica Tamaño Carta">
+            <img src="Mica Termica Tamaño Carta.jpg"alt="Producto_ 237"><h4>Mica Termica Tamaño Carta</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529949</p>
+        </div>
+
+        <div class="producto" data-name="Moop Completo">
+            <img src="Moop Completo.jpg"alt="Producto_ 238"><h4>Moop Completo</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5521338</p>
+        </div>
+
+        <div class="producto" data-name="Navaja de Seguridad Autoretractil">
+            <img src="Navaja de Seguridad Autoretractil.jpg"alt="Producto_ 239"><h4>Navaja de Seguridad Autoretractil</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5535400</p>
+        </div>
+
+        <div class="producto" data-name="Notas Autoadheribles Raya Neon 101 x 101 mm">
+            <img src="Notas Autoadheribles Raya Neon 101 x 101 mm.jpg"alt="Producto_ 240"><h4>Notas Autoadheribles Raya Neon 101 x 101 mm</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530190</p>
+        </div>
+
+        <div class="producto" data-name="Orejera Montable a Casco">
+            <img src="Orejera Montable a Casco.jpg"alt="Producto_ 241"><h4>Orejera Montable a Casco</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5537402</p>
+        </div>
+
+        <div class="producto" data-name="Overol Tyuek">
+            <img src="Overol Tyuek.jpg"alt="Producto_ 242"><h4>Overol Tyuek</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506475</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Hombre de Mezclilla con Cinta Reflejante">
+            <img src="Pantalon (Jeans) para Hombre de Mezclilla con Cinta Reflejante.jpg"alt="Producto_ 243"><h4>Pantalon (Jeans) para Hombre de Mezclilla con Cinta Reflejante</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539422</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante">
+            <img src="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante.jpg"alt="Producto_ 244"><h4>Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539424</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante y Bolsa Cargo">
+            <img src="Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante y Bolsa Cargo.jpg"alt="Producto_ 245"><h4>Pantalon (Jeans) para Mujer de Mezclilla con Cinta Reflejante y Bolsa Cargo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539448</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon Caqui Ignifugo y Contra Arco Electrico">
+            <img src="Pantalon Caqui Ignifugo y Contra Arco Electrico.jpg"alt="Producto_ 246"><h4>Pantalon Caqui Ignifugo y Contra Arco Electrico</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539437</p>
+        </div>
+
+        <div class="producto" data-name="Pantalon de Cargo para Hombre Caqui">
+            <img src="Pantalon de Cargo para Hombre Caqui.jpg"alt="Producto_ 247"><h4>Pantalon de Cargo para Hombre Caqui</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539431</p>
+        </div>
+
+        <div class="producto" data-name="Papel Aluminio en Rollo (400 mt x 30 cm)">
+            <img src="Papel Aluminio en Rollo (400 mt x 30 cm).jpg"alt="Producto_ 248"><h4>Papel Aluminio en Rollo (400 mt x 30 cm)</h4><p></p>
+            <p></p>
+            <p>SKU:5514168</p>
+        </div>
+
+        <div class="producto" data-name="Papel Blanco Blancura 89% Caja con 5000 hojas">
+            <img src="Papel Blanco Blancura 89% Caja con 5000 hojas.jpg"alt="Producto_ 249"><h4>Papel Blanco Blancura 89% Caja con 5000 hojas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530157</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Fluido Centrico con 12 Rollos">
+            <img src="Papel Higienico Fluido Centrico con 12 Rollos.jpg"alt="Producto_ 250"><h4>Papel Higienico Fluido Centrico con 12 Rollos</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5537989</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Jumbo con 12 Rollos 70016532">
+            <img src="Papel Higienico Jumbo con 12 Rollos 70016532.jpg"alt="Producto_ 251"><h4>Papel Higienico Jumbo con 12 Rollos 70016532</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5541852</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Jumbo con 12 Rollos TJ 12 22A">
+            <img src="Papel Higienico Jumbo con 12 Rollos TJ 12 22A.jpg"alt="Producto_ 252"><h4>Papel Higienico Jumbo con 12 Rollos TJ 12 22A</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540477</p>
+        </div>
+
+        <div class="producto" data-name="Papel Higienico Jumbo con 6 Rollos 70060433">
+            <img src="Papel Higienico Jumbo con 6 Rollos 70060433.jpg"alt="Producto_ 253"><h4>Papel Higienico Jumbo con 6 Rollos 70060433</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540247</p>
+        </div>
+
+        <div class="producto" data-name="Papel Tamaño Carta Caja con 5000 hojas">
+            <img src="Papel Tamaño Carta Caja con 5000 hojas.jpg"alt="Producto_ 254"><h4>Papel Tamaño Carta Caja con 5000 hojas</h4><p>Papeleria</p>
+            <p>Papel e Impresión</p>
+            <p>SKU:5530047</p>
+        </div>
+
+        <div class="producto" data-name="Parafina Lata Litro">
+            <img src="Parafina Lata Litro.jpg"alt="Producto_ 255"><h4>Parafina Lata Litro</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:4057494</p>
+        </div>
+
+        <div class="producto" data-name="Pasta de Diamante Blanca para Pulir 5gr">
+            <img src="Pasta de Diamante Blanca para Pulir 5gr.jpg"alt="Producto_ 256"><h4>Pasta de Diamante Blanca para Pulir 5gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4233254</p>
+        </div>
+
+        <div class="producto" data-name="Pasta de Plasta Tamaño Carta Color Negro">
+            <img src="Pasta de Plasta Tamaño Carta Color Negro.jpg"alt="Producto_ 257"><h4>Pasta de Plasta Tamaño Carta Color Negro</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5506023</p>
+        </div>
+
+        <div class="producto" data-name="Pasta de Soldadura con 60 gr">
+            <img src="Pasta de Soldadura con 60 gr.jpg"alt="Producto_ 258"><h4>Pasta de Soldadura con 60 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4185544</p>
+        </div>
+
+        <div class="producto" data-name="Pasta Decapante Garrafon Kg">
+            <img src="Pasta Decapante Garrafon Kg.jpg"alt="Producto_ 259"><h4>Pasta Decapante Garrafon Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:4072171</p>
+        </div>
+
+        <div class="producto" data-name="Pastilla Aromatizante Wiese">
+            <img src="Pastilla Aromatizante Wiese.jpg"alt="Producto_ 260"><h4>Pastilla Aromatizante Wiese</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5502438</p>
+        </div>
+
+        <div class="producto" data-name="Pegamento de Contacto Resistol 5000 Litro">
+            <img src="Pegamento de Contacto Resistol 5000 Litro.jpg"alt="Producto_ 261"><h4>Pegamento de Contacto Resistol 5000 Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4158534</p>
+        </div>
+
+        <div class="producto" data-name="Perforadora Triple">
+            <img src="Perforadora Triple.jpg"alt="Producto_ 262"><h4>Perforadora Triple</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530042</p>
+        </div>
+
+        <div class="producto" data-name="Philips 175 Watt Foco (Bombilla) de Halogenuros Metalicos">
+            <img src="Philips 175 Watt Foco (Bombilla) de Halogenuros Metalicos.jpg"alt="Producto_ 263"><h4>Philips 175 Watt Foco (Bombilla) de Halogenuros Metalicos</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4184746</p>
+        </div>
+
+        <div class="producto" data-name="Pinokrol Litro">
+            <img src="Pinokrol Litro.jpg"alt="Producto_ 264"><h4>Pinokrol Litro</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5505869</p>
+        </div>
+
+        <div class="producto" data-name="Pintura Vinil Acrilica Blanca Vinimex Litro">
+            <img src="Pintura Vinil Acrilica Blanca Vinimex Litro.jpg"alt="Producto_ 265"><h4>Pintura Vinil Acrilica Blanca Vinimex Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4236449</p>
+        </div>
+
+        <div class="producto" data-name="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 3 mm de Espesor">
+            <img src="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 3 mm de Espesor.jpg"alt="Producto_ 266"><h4>Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 3 mm de Espesor</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:4056931</p>
+        </div>
+
+        <div class="producto" data-name="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 6 mm de Espesor">
+            <img src="Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 6 mm de Espesor.jpg"alt="Producto_ 267"><h4>Placa Acrilica Cristal L-051  (2.40 X 1.20 m) con 6 mm de Espesor</h4><p>Papeleria</p>
+            <p></p>
+            <p>SKU:4056625</p>
+        </div>
+
+        <div class="producto" data-name="Plantilla Anticorte">
+            <img src="Plantilla Anticorte.jpg"alt="Producto_ 268"><h4>Plantilla Anticorte</h4><p>EPP</p>
+            <p>Calzado</p>
+            <p>SKU:5526810</p>
+        </div>
+
+        <div class="producto" data-name="Playera Manga Corta Azul Cielo">
+            <img src="Playera Manga Corta Azul Cielo.jpg"alt="Producto_ 269"><h4>Playera Manga Corta Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539440</p>
+        </div>
+
+        <div class="producto" data-name="Playera Manga Larga Azul Cielo">
+            <img src="Playera Manga Larga Azul Cielo.jpg"alt="Producto_ 270"><h4>Playera Manga Larga Azul Cielo</h4><p>Uniforme</p>
+            <p></p>
+            <p>SKU:5539441</p>
+        </div>
+
+        <div class="producto" data-name="Polymar 75 Color Blanco con 15 litros">
+            <img src="Polymar 75 Color Blanco con 15 litros.jpg"alt="Producto_ 271"><h4>Polymar 75 Color Blanco con 15 litros</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4236485</p>
+        </div>
+
+        <div class="producto" data-name="Prefiltro">
+            <img src="Prefiltro.jpg"alt="Producto_ 272"><h4>Prefiltro</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506436</p>
+        </div>
+
+        <div class="producto" data-name="Prevent Kg">
+            <img src="Prevent Kg.jpg"alt="Producto_ 273"><h4>Prevent Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000022</p>
+        </div>
+
+        <div class="producto" data-name="Protector de Hoja Tamaño Carta Caja con 100 pzas">
+            <img src="Protector de Hoja Tamaño Carta Caja con 100 pzas.jpg"alt="Producto_ 274"><h4>Protector de Hoja Tamaño Carta Caja con 100 pzas</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529971</p>
+        </div>
+
+        <div class="producto" data-name="Protector Facial Bionic">
+            <img src="Protector Facial Bionic.jpg"alt="Producto_ 275"><h4>Protector Facial Bionic</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5520820</p>
+        </div>
+
+        <div class="producto" data-name="Recogedor de Metal">
+            <img src="Recogedor de Metal.jpg"alt="Producto_ 276"><h4>Recogedor de Metal</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5516098</p>
+        </div>
+
+        <div class="producto" data-name="Regla Escolar">
+            <img src="Regla Escolar.jpg"alt="Producto_ 277"><h4>Regla Escolar</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530034</p>
+        </div>
+
+        <div class="producto" data-name="Repuesto para Moop">
+            <img src="Repuesto para Moop.jpg"alt="Producto_ 278"><h4>Repuesto para Moop</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5513382</p>
+        </div>
+
+        <div class="producto" data-name="Resina Epoxi 3M Scotchcast con 418 Gr">
+            <img src="Resina Epoxi 3M Scotchcast con 418 Gr.jpg"alt="Producto_ 279"><h4>Resina Epoxi 3M Scotchcast con 418 Gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4080551</p>
+        </div>
+
+        <div class="producto" data-name="Resina Epoxi 3M Scotchcast con 90 Gr">
+            <img src="Resina Epoxi 3M Scotchcast con 90 Gr.jpg"alt="Producto_ 280"><h4>Resina Epoxi 3M Scotchcast con 90 Gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053957</p>
+        </div>
+
+        <div class="producto" data-name="Resina Epoxi Plasti Acero en Jeringa 25 ml">
+            <img src="Resina Epoxi Plasti Acero en Jeringa 25 ml.jpg"alt="Producto_ 281"><h4>Resina Epoxi Plasti Acero en Jeringa 25 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4188277</p>
+        </div>
+
+        <div class="producto" data-name="Respirador MSA Miniscape">
+            <img src="Respirador MSA Miniscape.jpg"alt="Producto_ 282"><h4>Respirador MSA Miniscape</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5541705</p>
+        </div>
+
+        <div class="producto" data-name="Rinse Clean Kg">
+            <img src="Rinse Clean Kg.jpg"alt="Producto_ 283"><h4>Rinse Clean Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000850</p>
+        </div>
+
+        <div class="producto" data-name="Rodillera Regular">
+            <img src="Rodillera Regular.jpg"alt="Producto_ 284"><h4>Rodillera Regular</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:4242875</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de 1500 Etiquetas De 51 X 25 mm (2 x 1 in) Color Verde">
+            <img src="Rollo de 1500 Etiquetas De 51 X 25 mm (2 x 1 in) Color Verde.jpg"alt="Producto_ 285"><h4>Rollo de 1500 Etiquetas De 51 X 25 mm (2 x 1 in) Color Verde</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5505945</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Papel Aplicación Premasking Transfer">
+            <img src="Rollo de Papel Aplicación Premasking Transfer.jpg"alt="Producto_ 286"><h4>Rollo de Papel Aplicación Premasking Transfer</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5524099</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Papel Bond de 91 cm X 50 m">
+            <img src="Rollo de Papel Bond de 91 cm X 50 m.jpg"alt="Producto_ 287"><h4>Rollo de Papel Bond de 91 cm X 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5521001</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Señalamiento Peligro 12 cm x 50 m">
+            <img src="Rollo de Señalamiento Peligro 12 cm x 50 m.jpg"alt="Producto_ 288"><h4>Rollo de Señalamiento Peligro 12 cm x 50 m</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5506406</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Señalamiento Precaucion 12 cm x 50 m">
+            <img src="Rollo de Señalamiento Precaucion 12 cm x 50 m.jpg"alt="Producto_ 289"><h4>Rollo de Señalamiento Precaucion 12 cm x 50 m</h4><p>EPP</p>
+            <p>SAM/LOTOTO</p>
+            <p>SKU:5506405</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Microperforado de 1.52 x 50 m">
+            <img src="Rollo de Vinil Autoadherible Microperforado de 1.52 x 50 m.jpg"alt="Producto_ 290"><h4>Rollo de Vinil Autoadherible Microperforado de 1.52 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5525381</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Amarillo de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Amarillo de 24 in x 45.42 m.jpg"alt="Producto_ 291"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Amarillo de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524028</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Azul de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Azul de 24 in x 45.42 m.jpg"alt="Producto_ 292"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Azul de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524097</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Blanco de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Blanco de 24 in x 45.42 m.jpg"alt="Producto_ 293"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Blanco de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5523989</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Negro de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Negro de 24 in x 45.42 m.jpg"alt="Producto_ 294"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Negro de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524120</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Rojo de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Rojo de 24 in x 45.42 m.jpg"alt="Producto_ 295"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Rojo de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524098</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Verde de 24 in x 45.42 m">
+            <img src="Rollo de Vinil Autoadherible Scotchcal Electrocut Color Verde de 24 in x 45.42 m.jpg"alt="Producto_ 296"><h4>Rollo de Vinil Autoadherible Scotchcal Electrocut Color Verde de 24 in x 45.42 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5524122</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Autoadherible Transparente 1.37 x 50 m">
+            <img src="Rollo de Vinil Autoadherible Transparente 1.37 x 50 m.jpg"alt="Producto_ 297"><h4>Rollo de Vinil Autoadherible Transparente 1.37 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5533539</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil Microperforado 1.52 x 50 m">
+            <img src="Rollo de Vinil Microperforado 1.52 x 50 m.jpg"alt="Producto_ 298"><h4>Rollo de Vinil Microperforado 1.52 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5530755</p>
+        </div>
+
+        <div class="producto" data-name="Rollo de Vinil para Impresion Blanco Autodherible de 1.52 x 50 m">
+            <img src="Rollo de Vinil para Impresion Blanco Autodherible de 1.52 x 50 m.jpg"alt="Producto_ 299"><h4>Rollo de Vinil para Impresion Blanco Autodherible de 1.52 x 50 m</h4><p>Papeleria</p>
+            <p>Papel e Impresión </p>
+            <p>SKU:5513893</p>
+        </div>
+
+        <div class="producto" data-name="Sacapuntas Escolar">
+            <img src="Sacapuntas Escolar.jpg"alt="Producto_ 300"><h4>Sacapuntas Escolar</h4><p>Papeleria</p>
+            <p>Artículos de Escritura</p>
+            <p>SKU:5530035</p>
+        </div>
+
+        <div class="producto" data-name="Sanitizante Oxonia Active Kg">
+            <img src="Sanitizante Oxonia Active Kg.jpg"alt="Producto_ 301"><h4>Sanitizante Oxonia Active Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5005790</p>
+        </div>
+
+        <div class="producto" data-name="Sanitizante para Pisos Sani Step Kg">
+            <img src="Sanitizante para Pisos Sani Step Kg.jpg"alt="Producto_ 302"><h4>Sanitizante para Pisos Sani Step Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5006010</p>
+        </div>
+
+        <div class="producto" data-name="Shampoo Líquido Desengrasante de 4 Cartuchos de 1000 ml">
+            <img src="Shampoo Líquido Desengrasante de 4 Cartuchos de 1000 ml.jpg"alt="Producto_ 303"><h4>Shampoo Líquido Desengrasante de 4 Cartuchos de 1000 ml</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540560</p>
+        </div>
+
+        <div class="producto" data-name="Silicon Forma Juntex RTV Negro 80 ml">
+            <img src="Silicon Forma Juntex RTV Negro 80 ml.jpg"alt="Producto_ 304"><h4>Silicon Forma Juntex RTV Negro 80 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4031302</p>
+        </div>
+
+        <div class="producto" data-name="Silicon LOCTITE 5920 Copper 56 gr">
+            <img src="Silicon LOCTITE 5920 Copper 56 gr.jpg"alt="Producto_ 305"><h4>Silicon LOCTITE 5920 Copper 56 gr</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4056356</p>
+        </div>
+
+        <div class="producto" data-name="Silicona Pegaset 100 ml">
+            <img src="Silicona Pegaset 100 ml.jpg"alt="Producto_ 306"><h4>Silicona Pegaset 100 ml</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053950</p>
+        </div>
+
+        <div class="producto" data-name="Solidex 4 gr">
+            <img src="Solidex 4 gr.jpg"alt="Producto_ 307"><h4>Solidex 4 gr</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000845</p>
+        </div>
+
+        <div class="producto" data-name="Solvente Descabonizante Batech Litro">
+            <img src="Solvente Descabonizante Batech Litro.jpg"alt="Producto_ 308"><h4>Solvente Descabonizante Batech Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053968</p>
+        </div>
+
+        <div class="producto" data-name="Solvente Dielectrico Desengrasante Litro">
+            <img src="Solvente Dielectrico Desengrasante Litro.jpg"alt="Producto_ 309"><h4>Solvente Dielectrico Desengrasante Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4053958</p>
+        </div>
+
+        <div class="producto" data-name="Stell Brite Kg">
+            <img src="Stell Brite Kg.jpg"alt="Producto_ 310"><h4>Stell Brite Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000846</p>
+        </div>
+
+        <div class="producto" data-name="Sulfito de Sodio Kg">
+            <img src="Sulfito de Sodio Kg.jpg"alt="Producto_ 311"><h4>Sulfito de Sodio Kg</h4><p>Quimicos</p>
+            <p></p>
+            <p>SKU:5000052</p>
+        </div>
+
+        <div class="producto" data-name="Suspension con Ajustes de Intervalos Mode para Casco">
+            <img src="Suspension con Ajustes de Intervalos Mode para Casco.jpg"alt="Producto_ 312"><h4>Suspension con Ajustes de Intervalos Mode para Casco</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506507</p>
+        </div>
+
+        <div class="producto" data-name="Tabla Sujetapapel Tamaño Carta">
+            <img src="Tabla Sujetapapel Tamaño Carta.jpg"alt="Producto_ 313"><h4>Tabla Sujetapapel Tamaño Carta</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530056</p>
+        </div>
+
+        <div class="producto" data-name="Tanque de Acetileno con 5.1 kg">
+            <img src="Tanque de Acetileno con 5.1 kg.jpg"alt="Producto_ 314"><h4>Tanque de Acetileno con 5.1 kg</h4><p>Gases</p>
+            <p></p>
+            <p>SKU:4079694</p>
+        </div>
+
+        <div class="producto" data-name="Tanque de Argon (Ar) con 5.5 Kg">
+            <img src="Tanque de Argon (Ar) con 5.5 Kg.jpg"alt="Producto_ 315"><h4>Tanque de Argon (Ar) con 5.5 Kg</h4><p>Gases</p>
+            <p></p>
+            <p>SKU:4072222</p>
+        </div>
+
+        <div class="producto" data-name="Tanque de Hexafluoruro de Azufre (SF6)">
+            <img src="Tanque de Hexafluoruro de Azufre (SF6).jpg"alt="Producto_ 316"><h4>Tanque de Hexafluoruro de Azufre (SF6)</h4><p>Gases</p>
+            <p></p>
+            <p>SKU:5000841</p>
+        </div>
+
+        <div class="producto" data-name="Tanque de Oxigeno (O2) con 9.50 m3">
+            <img src="Tanque de Oxigeno (O2) con 9.50 m3.jpg"alt="Producto_ 317"><h4>Tanque de Oxigeno (O2) con 9.50 m3</h4><p>Gases</p>
+            <p></p>
+            <p>SKU:4056351</p>
+        </div>
+
+        <div class="producto" data-name="Tapon Auditivo de Cordon">
+            <img src="Tapon Auditivo de Cordon.jpg"alt="Producto_ 318"><h4>Tapon Auditivo de Cordon</h4><p>EPP</p>
+            <p></p>
+            <p>SKU:5506415</p>
+        </div>
+
+        <div class="producto" data-name="Tarjeta PVC Inteligente Tipo Mifar">
+            <img src="Tarjeta PVC Inteligente Tipo Mifar.jpg"alt="Producto_ 319"><h4>Tarjeta PVC Inteligente Tipo Mifar</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5526573</p>
+        </div>
+
+        <div class="producto" data-name="Thinner Comex Litro">
+            <img src="Thinner Comex Litro.jpg"alt="Producto_ 320"><h4>Thinner Comex Litro</h4><p>Solventes</p>
+            <p></p>
+            <p>SKU:4074557</p>
+        </div>
+
+        <div class="producto" data-name="Tijera Universal">
+            <img src="Tijera Universal.jpg"alt="Producto_ 321"><h4>Tijera Universal</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5530046</p>
+        </div>
+
+        <div class="producto" data-name="Tinta para Sellos Negros">
+            <img src="Tinta para Sellos Negros.jpg"alt="Producto_ 322"><h4>Tinta para Sellos Negros</h4><p>Papeleria</p>
+            <p>Artículos para Escritorio</p>
+            <p>SKU:5529964</p>
+        </div>
+
+        <div class="producto" data-name="Toalla en Rollo para Manos 6 rollos con 160 m">
+            <img src="Toalla en Rollo para Manos 6 rollos con 160 m.jpg"alt="Producto_ 323"><h4>Toalla en Rollo para Manos 6 rollos con 160 m</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5530207</p>
+        </div>
+
+        <div class="producto" data-name="Toalla en Rollo para Manos 6 rollos con 180 m">
+            <img src="Toalla en Rollo para Manos 6 rollos con 180 m.jpg"alt="Producto_ 324"><h4>Toalla en Rollo para Manos 6 rollos con 180 m</h4><p>Producto de Limpieza</p>
+            <p></p>
+            <p>SKU:5540248</p>
+        </div>
+
+        <div class="producto" data-name="Trapeador">
+            <img src="Trapeador.jpg"alt="Producto_ 325"><h4>Trapeador</h4><p>Utensilio de Limpieza</p>
+            <p></p>
+            <p>SKU:5527082</p>
+        </div>
+
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Departamento de Logística</p>
+    </footer>
+
+    <script>
+        function searchList() {
+            let input = document.getElementById('searchInput').value.toUpperCase();
+            let productos = document.querySelectorAll('.producto');
+
+            productos.forEach(producto => {
+                let texto = producto.innerText.toUpperCase();
+                if (texto.includes(input)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
