@@ -139,11 +139,18 @@
             }
 
             nav ul li {
-                margin-right: 5px;
-            }
+            margin-top: 8px; /* Margen superior de 50px */
+            margin-right: 3px;
+            margin-left: 3px;
+            .texto-ajustado {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Opcional: muestra puntos suspensivos si el texto es demasiado largo */
+        }
+                      }
 
             nav ul li a {
-                padding: 3px;
+                padding: 2px;
             }
 
             #buscador {
@@ -175,18 +182,20 @@
 <body>
     <header>
         <img src="Logo_Modelo.jpg" alt="Logo izquierdo" class="logo-izquierdo">
-        <h1><a href="index.html">Almacén Partes y Refacciones</a></h1>
+        <h1><a href="index.html">Almacén PyR</a></h1>
         <img src="Logo_Logistica.jpg" alt="Logo derecho" class="logo-derecho">
     </header>
 
     <nav>
         <ul>
+            <li><a href="index.html">Inicio</a></li>
             <li><a href="Limpieza.html">Limpieza</a></li>
             <li><a href="EPP.html">EPP</a></li>
             <li><a href="Papelería.html">Papelería</a></li>
             <li><a href="Solventes.html">Solventes</a></li>
             <li><a href="Químicos.html">Químicos</a></li>
             <li><a href="Uniformes.html">Uniformes</a></li>
+            <li><a href="Refacciones.html">Refacciones</a></li>
         </ul>
     </nav>
 
